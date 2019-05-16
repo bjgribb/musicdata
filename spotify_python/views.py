@@ -18,9 +18,17 @@ def index(request):
 
     client_credentials_manager = SpotifyClientCredentials(client_id=config('client_id'), client_secret=config('client_secret'))
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-    results = sp.search(q='artist: black sabbath', type='artist')
-    data = results['artists']
-    items = data['items']
+
+    if request.method == 'POST':
+        name = request.POST.get('artist_search', None)
+        results = sp.search(q='artist:' + name, type='artist')
+        data = results['artists']
+        items = data['items']
+    
+    else:
+        results = sp.search(q='artist:', type='artist')
+        data = results['artists']
+        items = data['items']
 
     context = {
         'results': results,
