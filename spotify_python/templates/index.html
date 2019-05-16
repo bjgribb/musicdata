@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for item in items %}
+
+    <h2>{{ item.name }}</h2>
+        {% if item.images.1.url %}
+            <img src='{{ item.images.1.url }}'>
+        {% endif %}
+        <p><strong>Followers:</strong> {{ item.followers.total }} <strong>Popularity:</strong> {{ item.popularity }}</p>
+        <a href='{{ item.external_urls.spotify }}' target='_blank'>Open Artist Page in Spotify</a>
+  
+{% endfor %}
+
+{% endblock %}

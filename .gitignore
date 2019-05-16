@@ -228,4 +228,7 @@ Temporary Items
 # Ignore all local history of files
 .history
 
+### Python Decouple ###
+.env
+
 # End of https://www.gitignore.io/api/osx,django,python,visualstudiocode

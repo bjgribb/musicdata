@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import RedirectView
+from spotify_python import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', RedirectView.as_view(url='/home/', permanent=True))
+    path('', RedirectView.as_view(url='/home/', permanent=True)),
+    path('home/', views.index, name='index'),
 ]
