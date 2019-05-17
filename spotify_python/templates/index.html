@@ -8,20 +8,28 @@
 <button type='submit'>Search</button>
 </form>
 
+<div class=''>
+
 {% for artist in artists %}
-<section class='tc pa3'>
-    <article class="hide-child relative ba b--black-20 mw5 center">
-        {% if artist.images.1.url %}
-        <img src='{{ artist.images.1.url }}' class='db'>
-        {% endif %}
-        <div class='pa2 bt b--black-20>'>
-            <a class='f2 db link dark-blue hover-blue' href="{% url 'albums' artist_id=artist.id %}">{{ artist.name }}</a>
-            <p class='f6 gray mvl'>Followers: {{ artist.followers.total }}</p>
-            <p class='f6 gray mvl'>Popularity: {{ artist.popularity }}</p>
-            <a class="link tc ph3 pv1 db bg-animate bg-dark-blue hover-bg-blue white f6 br1" href='{{ artist.external_urls.spotify }}' target='_blank'>Open in Spotify</a>
+    <section class='tc'>
+        <div class='container'>
+            {% if artist.images.1.url %}
+                <img src='{{ artist.images.1.url }}' id='image'>
+            {% else %}
+                <img src='/static/pics/Spotify_Icon_RGB_Black.png' id='image'>
+            {% endif %}
+            <div class='middle'>
+                <div class='text'>
+                    <a href="{% url 'albums' artist_id=artist.id %}">{{ artist.name }}</a>
+                    <p>Followers: {{ artist.followers.total }}</p>
+                    <p>Popularity: {{ artist.popularity }}</p>
+                    <a href='{{ artist.external_urls.spotify }}' target='_blank'>Open in Spotify</a>
+                </div>
+            </div>
         </div>
-    </article>
-</section>
+    </section>
 {% endfor %}
+
+</div>
 
 {% endblock %}
