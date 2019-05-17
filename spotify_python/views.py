@@ -16,17 +16,16 @@ def index(request):
 
     # spotify = spotipy.Spotify(auth=token)
 
-    client_credentials_manager = SpotifyClientCredentials(client_id=config('client_id'), client_secret=config('client_secret'))
-    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-
     if request.method == 'POST':
+        client_credentials_manager = SpotifyClientCredentials(client_id=config('client_id'), client_secret=config('client_secret'))
+        sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
         name = request.POST.get('artist_search', None)
         artists = sp.search(q='artist:' + name, type='artist')['artists']['items']
         # artist_data = artists['artists']['items']
         # items = artist_data['items']
 
     else:
-        artists = sp.search(q='artist:', type='artist')['artists']['items']
+        artists = ''
         # artist_data = artists['artists']
         # items = artist_data['items']
 
