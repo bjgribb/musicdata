@@ -21,19 +21,31 @@ def index(request):
 
     if request.method == 'POST':
         name = request.POST.get('artist_search', None)
-        results = sp.search(q='artist:' + name, type='artist')
-        data = results['artists']
-        items = data['items']
-    
+        artists = sp.search(q='artist:' + name, type='artist')['artists']['items']
+        # artist_data = artists['artists']['items']
+        # items = artist_data['items']
+
     else:
-        results = sp.search(q='artist:', type='artist')
-        data = results['artists']
-        items = data['items']
+        artists = sp.search(q='artist:', type='artist')['artists']['items']
+        # artist_data = artists['artists']
+        # items = artist_data['items']
 
     context = {
-        'results': results,
-        'data': data,
-        'items': items,
+        'artists': artists,
     }
 
     return render(request, 'index.html', context=context)
+
+def artist_albums(request, artist_id):
+    client_credentials_manager = SpotifyClientCredentials(client_id=config('client_id'), client_secret=config('client_secret'))
+    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+    albums = sp.artist_albums(artist_id=artist_id, album_type='album')['items']
+    artist_top_tracks = sp.artist_top_tracks(artist_id=artist_id, country='US')
+    top_tracks = artist_top_tracks['tracks']
+
+    context = {
+        'albums': albums,
+        'top_tracks': top_tracks,
+    }
+
+    return render(request, 'albums.html', context=context)
