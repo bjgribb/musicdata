@@ -1,10 +1,15 @@
 html {
     background-color: #191414;
     color: #FFFFFF;
+    font-family: 'Montserrat', sans-serif;
 }
 
 body {
     padding: 1rem;
+}
+
+a {
+    color: #FFFFFF;
 }
 
 .container {
@@ -12,20 +17,20 @@ body {
     width: 400px;
     margin-right: auto;
     margin-left: auto;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
-  #image {
+#image {
     opacity: 1;
     display: block;
     width: 400px;
     height: 400px;
     transition: .5s ease;
     backface-visibility: hidden;
-  }
+}
   
-  .middle {
+.middle {
     transition: .5s ease;
     opacity: 0;
     position: absolute;
@@ -35,20 +40,31 @@ body {
     -ms-transform: translate(-50%, -50%);
     text-align: center;
     width: 200px;
-  }
+}
   
-  .container:hover #image {
+.container:hover #image {
     opacity: 0.3;
     /* filter: blur(8px); */
-  }
+}
   
-  .container:hover .middle {
+.container:hover .middle {
     opacity: 1;
-  }
+}
   
-  .text {
+.text {
     background-color: #1DB954;
     color: #FFFFFF;
     font-size: 16px;
     padding: 16px 32px;
-  }
+}
+
+@media only screen and (min-width: 880px) {
+    .main-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .container {
+        margin: 2rem;
+    }
+}

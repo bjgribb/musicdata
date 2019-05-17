@@ -9,11 +9,12 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
         {% block meta %}{% endblock %}
         <title>{% block title %}MusicData{% endblock %}</title>
     </head>
 
-    <h1>Artist Search</h1>
+    <h1><a href={% url 'index' %}>Artist Search</a></h1>
 
     <body>
         {% load static %}

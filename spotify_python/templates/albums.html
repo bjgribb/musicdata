@@ -2,15 +2,31 @@
 
 {% block content %}
 
+{% for track in artist_top_tracks %}
+    {% comment %} {{ track.external_urls.spotify }}
+    {{ track.name }}
+    {{ track.popularity }}
+    {{ track.preview_url }}
+    {{ track.track_number }}
+    {{ track.id }} {% endcomment %}
+    {% comment %} <iframe src="https://open.spotify.com/embed/track/{{ track.id }}" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> {% endcomment %}
+{% endfor %}
+
+<div class='main-container'>
+
 {% for album in albums %}
-    <h2>{{ album.name }}</h2>
+    <div class='container'>
+    {% comment %} <h2>{{ album.name }}</h2>
     <p><img src='{{ album.images.0.url }}'></p>
     <p><strong>Release Date:</strong> {{ album.release_date }}</p>
-    <p><strong>Total Tracks:</strong> {{ album.total_tracks }}</p>
-    {% comment %} <p>{{ album }}</p> {% endcomment %}
+    <p><strong>Total Tracks:</strong> {{ album.total_tracks }}</p> {% endcomment %}
+    <iframe src="https://open.spotify.com/embed/album/{{ album.id }}" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     <p>
         <a href='{{ album.external_urls.spotify }}'>Open Album in Spotify</a>
     </p>
+    </div>
 {% endfor %}
+
+</div>
 
 {% endblock %}

@@ -40,12 +40,11 @@ def artist_albums(request, artist_id):
     client_credentials_manager = SpotifyClientCredentials(client_id=config('client_id'), client_secret=config('client_secret'))
     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
     albums = sp.artist_albums(artist_id=artist_id, album_type='album')['items']
-    artist_top_tracks = sp.artist_top_tracks(artist_id=artist_id, country='US')
-    top_tracks = artist_top_tracks['tracks']
+    artist_top_tracks = sp.artist_top_tracks(artist_id=artist_id, country='US')['tracks']
 
     context = {
         'albums': albums,
-        'top_tracks': top_tracks,
+        'artist_top_tracks': artist_top_tracks,
     }
 
     return render(request, 'albums.html', context=context)

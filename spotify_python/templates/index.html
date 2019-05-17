@@ -8,7 +8,7 @@
 <button type='submit'>Search</button>
 </form>
 
-<div class=''>
+<div class='main-container'>
 
 {% for artist in artists %}
     <section class='tc'>
@@ -16,7 +16,7 @@
             {% if artist.images.1.url %}
                 <img src='{{ artist.images.1.url }}' id='image'>
             {% else %}
-                <img src='/static/pics/Spotify_Icon_RGB_Black.png' id='image'>
+                <img src='/static/pics/Spotify_Icon_RGB_Green.png' id='image'>
             {% endif %}
             <div class='middle'>
                 <div class='text'>
