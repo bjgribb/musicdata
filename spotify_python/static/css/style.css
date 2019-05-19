@@ -30,10 +30,6 @@ a {
     position: relative;
     width: 400px;
     margin: 3rem auto 3rem auto;
-    /* margin-right: auto;
-    margin-left: auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem; */
   }
 
 #image {
@@ -41,8 +37,23 @@ a {
     display: block;
     width: 400px;
     height: 400px;
-    transition: .5s ease;
-    backface-visibility: hidden;
+}
+
+.album_container {
+    border-bottom: 2px white solid;
+    align-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.album_info {
+    max-width: 300px;
+    margin: 1rem;
+}
+
+.iframe {
+    margin: 1rem;
 }
 /*
 .middle {
@@ -72,6 +83,14 @@ a {
     font-size: 16px;
 }
 
+@media only screen and (min-width: 700px) {
+    .album_container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        border: none;
+    }
+
 @media only screen and (min-width: 880px) {
     .main-container {
         display: flex;
@@ -81,4 +100,5 @@ a {
     .container {
         margin: 2rem;
     }
+}
 }

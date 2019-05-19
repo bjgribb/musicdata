@@ -15,15 +15,21 @@
 <div class='main-container'>
 
 {% for album in albums %}
-    <div class='container'>
-    {% comment %} <h2>{{ album.name }}</h2>
-    <p><img src='{{ album.images.0.url }}'></p>
-    <p><strong>Release Date:</strong> {{ album.release_date }}</p>
-    <p><strong>Total Tracks:</strong> {{ album.total_tracks }}</p> {% endcomment %}
-    <iframe src="https://open.spotify.com/embed/album/{{ album.id }}" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-    <p>
-        <a href='{{ album.external_urls.spotify }}'>Open Album in Spotify</a>
-    </p>
+
+    <div class='album_container'>
+        <div class='album_info'>
+            <img src='{{ album.images.1.url }}' class='album_art'>
+            <h2>{{ album.name }}</h2>
+            <p><strong>Release Date:</strong> {{ album.release_date }}</p>
+            <p><strong>Total Tracks:</strong> {{ album.total_tracks }}</p>
+        </div>
+        <div class='iframe'>
+            <iframe src="https://open.spotify.com/embed/album/{{ album.id }}" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <p>
+                Open with 
+                <img class="spotify_logo" src="/static/pics/Spotify_Logo_CMYK_Green.png">
+            </p>
+        </div>
     </div>
 {% endfor %}
 
