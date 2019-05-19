@@ -18,14 +18,17 @@
             {% else %}
                 <img src='/static/pics/Spotify_Icon_RGB_Green.png' id='image'>
             {% endif %}
-            <div class='middle'>
                 <div class='text'>
-                    <a href="{% url 'albums' artist_id=artist.id %}">{{ artist.name }}</a>
-                    <p>Followers: {{ artist.followers.total }}</p>
-                    <p>Popularity: {{ artist.popularity }}</p>
-                    <a href='{{ artist.external_urls.spotify }}' target='_blank'>Open in Spotify</a>
+                    <h1><a href="{% url 'albums' artist_id=artist.id %}">{{ artist.name }}</a></h1>
+                    <p><strong>Followers:</strong> {{ artist.followers.total }}</p>
+                    <p><strong>Popularity:</strong> {{ artist.popularity }}</p>
+                    <div class='login'>
+                        <a href='{{ artist.external_urls.spotify }}' target='_blank' class='login_ref'>
+                            Play with 
+                            <img class="spotify_logo" src="/static/pics/Spotify_Logo_CMYK_Green.png">
+                        </a>
+                    </div>
                 </div>
-            </div>
         </div>
     </section>
 {% endfor %}

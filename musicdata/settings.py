@@ -110,6 +110,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
+USE_THOUSAND_SEPARATOR = True
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -123,3 +125,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+USE_THOUSAND_SEPARATOR = True

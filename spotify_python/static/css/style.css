@@ -12,13 +12,28 @@ a {
     color: #FFFFFF;
 }
 
+.spotify_logo {
+    width: 70px;
+}
+
+.login {
+    height: 30px;
+    line-height: 30px;
+    white-space: nowrap;
+}
+
+.login_ref {
+    text-decoration: none;
+}
+
 .container {
     position: relative;
     width: 400px;
-    margin-right: auto;
+    margin: 3rem auto 3rem auto;
+    /* margin-right: auto;
     margin-left: auto;
     margin-top: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 2rem; */
   }
 
 #image {
@@ -29,7 +44,7 @@ a {
     transition: .5s ease;
     backface-visibility: hidden;
 }
-  
+/*
 .middle {
     transition: .5s ease;
     opacity: 0;
@@ -44,18 +59,17 @@ a {
   
 .container:hover #image {
     opacity: 0.3;
-    /* filter: blur(8px); */
+    filter: blur(8px);
 }
   
 .container:hover .middle {
     opacity: 1;
-}
+} */
   
 .text {
-    background-color: #1DB954;
+    /* background-color: #1DB954; */
     color: #FFFFFF;
     font-size: 16px;
-    padding: 16px 32px;
 }
 
 @media only screen and (min-width: 880px) {
