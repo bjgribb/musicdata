@@ -13,13 +13,14 @@
 {% for artist in artists %}
     <section>
         <div class='container'>
+        <a href="{% url 'albums' artist_id=artist.id %}">
             {% if artist.images.1.url %}
                 <img src='{{ artist.images.1.url }}' id='image'>
             {% else %}
                 <img src='/static/pics/Spotify_Icon_RGB_Green.png' id='image'>
             {% endif %}
                 <div class='text'>
-                    <h1><a href="{% url 'albums' artist_id=artist.id %}">{{ artist.name }}</a></h1>
+                    <h1>{{ artist.name }}</h1></a>
                     <p><strong>Followers:</strong> {{ artist.followers.total }}</p>
                     <p><strong>Popularity:</strong> {{ artist.popularity }}</p>
                     <div class='login'>

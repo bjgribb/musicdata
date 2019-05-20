@@ -18,8 +18,10 @@
 
     <div class='album_container'>
         <div class='album_info'>
-            <img src='{{ album.images.1.url }}' class='album_art'>
-            <h2>{{ album.name }}</h2>
+            <a href="{% url 'tracks' album_id=album.id %}">
+                <img src='{{ album.images.1.url }}' class='album_art'>
+                <h2>{{ album.name }}</h2>
+            </a>
             <p><strong>Release Date:</strong> {{ album.release_date }}</p>
             <p><strong>Total Tracks:</strong> {{ album.total_tracks }}</p>
         </div>

@@ -55,6 +55,12 @@ a {
 .iframe {
     margin: 1rem;
 }
+
+.track_features {
+    display: flex;
+    justify-content: space-around;
+    color: #1DB954;
+}
 /*
 .middle {
     transition: .5s ease;

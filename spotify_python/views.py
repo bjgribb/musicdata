@@ -59,3 +59,20 @@ def artist_albums(request, artist_id):
     }
 
     return render(request, 'albums.html', context=context)
+
+def album_tracks(request, album_id):
+
+    client_credentials_manager = SpotifyClientCredentials(client_id=config('client_id'), client_secret=config('client_secret'))
+    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+
+    tracks = sp.album_tracks(album_id=album_id)['items']
+
+    for track in tracks:
+        track_features_dict = sp.audio_features(tracks=track['id'])
+        track.update(track_features_dict[0])
+
+    context = {
+        'tracks': tracks,
+    }
+
+    return render(request, 'tracks.html', context=context)
