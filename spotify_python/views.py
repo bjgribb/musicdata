@@ -7,25 +7,25 @@ import spotipy.util as util
 
 def index(request):
 
-    # if request.method == 'POST':
-    #     scope = 'user-library-read'
-    #     token = util.prompt_for_user_token('bjgribb', scope, client_id=config('client_id'), client_secret=config('client_secret'), redirect_uri=config('redirect_url'))
-
-    #     if token:
-    #         sp = spotipy.Spotify(auth=token)
-    #         sp.trace = False    
-    #         name = request.POST.get('artist_search', None)
-    #         artists = sp.search(q='artist:' + name, type='artist')['artists']['items']
-        
-    #     else:
-    #         print("Can't get token")
-
     if request.method == 'POST':
-        client_credentials_manager = SpotifyClientCredentials(client_id=config('client_id'), client_secret=config('client_secret'))
-        sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+        scope = 'user-library-read'
+        token = util.prompt_for_user_token('bjgribb', scope, client_id=config('client_id'), client_secret=config('client_secret'), redirect_uri=config('redirect_url'))
 
-        name = request.POST.get('artist_search', None)
-        artists = sp.search(q='artist:' + name, type='artist')['artists']['items']
+        if token:
+            sp = spotipy.Spotify(auth=token)
+            sp.trace = False    
+            name = request.POST.get('artist_search', None)
+            artists = sp.search(q='artist:' + name, type='artist')['artists']['items']
+        
+        else:
+            print("Can't get token")
+
+    # if request.method == 'POST':
+    #     client_credentials_manager = SpotifyClientCredentials(client_id=config('client_id'), client_secret=config('client_secret'))
+    #     sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+
+    #     name = request.POST.get('artist_search', None)
+    #     artists = sp.search(q='artist:' + name, type='artist')['artists']['items']
 
     else:
         artists = ''
@@ -37,18 +37,18 @@ def index(request):
     return render(request, 'index.html', context=context)
 
 def artist_albums(request, artist_id):
-    # scope = 'user-library-read'
-    # token = util.prompt_for_user_token('bjgribb', scope, client_id=config('client_id'), client_secret=config('client_secret'), redirect_uri=config('redirect_url'))
+    scope = 'user-library-read'
+    token = util.prompt_for_user_token('bjgribb', scope, client_id=config('client_id'), client_secret=config('client_secret'), redirect_uri=config('redirect_url'))
 
-    # if token:
-    #     sp = spotipy.Spotify(auth=token)
-    #     sp.trace = False    
+    if token:
+        sp = spotipy.Spotify(auth=token)
+        sp.trace = False    
     
-    # else:
-    #     print("Can't get token")
+    else:
+        print("Can't get token")
 
-    client_credentials_manager = SpotifyClientCredentials(client_id=config('client_id'), client_secret=config('client_secret'))
-    sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+    # client_credentials_manager = SpotifyClientCredentials(client_id=config('client_id'), client_secret=config('client_secret'))
+    # sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
     albums = sp.artist_albums(artist_id=artist_id, album_type='album')['items']
     artist_top_tracks = sp.artist_top_tracks(artist_id=artist_id, country='US')['tracks']
