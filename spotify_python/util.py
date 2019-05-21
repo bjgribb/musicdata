@@ -2,9 +2,11 @@ from __future__ import print_function
 import os
 from . import oauth2
 from decouple import config
+from django.shortcuts import redirect
 import spotipy
 import urllib.parse
 import requests
+
 
 def prompt_for_user_token(username, scope=None, client_id = None,
         client_secret = None, redirect_uri = None, cache_path = None):
@@ -61,16 +63,13 @@ def prompt_for_user_token(username, scope=None, client_id = None,
         ''')
         auth_url = sp_oauth.get_authorize_url()
         redirect_uri = urllib.parse.quote(config('redirect_url'))
-        # scope = urllib.parse.quote('user-library-read')
 
         implicit_url = f'''https://accounts.spotify.com/authorize?client_id={config('client_id')}&redirect_uri={redirect_uri}&scope=user-read-private&response_type=token'''
         print(implicit_url)
-        url_token = requests.get(implicit_url)
-        print(url_token.request)
 
         try:
             import webbrowser
-            webbrowser.open(auth_url)
+            webbrowser.open(implicit_url)
             print("Opened %s in your browser" % auth_url)
         except NameError:
             print("Please navigate here: %s" % auth_url)
@@ -85,10 +84,8 @@ def prompt_for_user_token(username, scope=None, client_id = None,
         print()
         print() 
 
-        code = sp_oauth.parse_response_code(response)
-        token_info = sp_oauth.get_access_token(code)
+        token_info = sp_oauth.parse_response_code(response)
+
     # Auth'ed API request
     if token_info:
-        return token_info['access_token']
-    else:
-        return None
+        return token_info

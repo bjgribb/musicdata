@@ -20,8 +20,9 @@ from spotify_python import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', RedirectView.as_view(url='/home/', permanent=True)),
+    path('', RedirectView.as_view(url='/login/', permanent=True)),
+    path('login/', views.login, name='login'),
     path('home/', views.index, name='index'),
     path('home/<str:artist_id>/', views.artist_albums, name='albums'),
-    path('home/<str:album_id>', views.album_tracks, name='tracks')
+    path('home/<str:album_id>', views.album_tracks, name='tracks'),
 ]

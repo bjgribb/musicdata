@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+{{ post.get_full_path }}
+{{ token }}
 <form method='POST'>
  {% csrf_token %}
 <input type='text' name='artist_search'>
 <button type='submit'>Search</button>
 </form>
+
+<div class='js_check'>Check</div>
 
 <div class='main-container'>
 

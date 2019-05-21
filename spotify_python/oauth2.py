@@ -184,8 +184,8 @@ class SpotifyOAuth(object):
         """
 
         try:
-            # return url.split('#access_token=')[1].split('&')[0]
-            return url.split("?code=")[1].split("&")[0]
+            return url.split('#access_token=')[1].split('&')[0]
+            # return url.split("?code=")[1].split("&")[0]
         except IndexError:
             return None
 
@@ -222,8 +222,6 @@ class SpotifyOAuth(object):
             scopes = scope.split()
             scopes.sort()
             return ' '.join(scopes)
-        else:
-            return None
 
     def refresh_access_token(self, refresh_token):
         payload = { 'refresh_token': refresh_token,
