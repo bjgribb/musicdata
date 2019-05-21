@@ -2,7 +2,8 @@ from django.shortcuts import render
 from spotipy.oauth2 import SpotifyClientCredentials
 from decouple import config
 import spotipy
-import spotipy.util as util
+# import spotipy.util as util
+from . import util
 
 
 def index(request):
@@ -38,7 +39,12 @@ def index(request):
 
 def artist_albums(request, artist_id):
     scope = 'user-library-read'
-    token = util.prompt_for_user_token('bjgribb', scope, client_id=config('client_id'), client_secret=config('client_secret'), redirect_uri=config('redirect_url'))
+    token = util.prompt_for_user_token(
+        'bjgribb', 
+        scope, 
+        client_id=config('client_id'), 
+        client_secret=config('client_secret'), 
+        redirect_uri=config('redirect_url'))
 
     if token:
         sp = spotipy.Spotify(auth=token)

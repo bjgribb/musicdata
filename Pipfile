@@ -13,6 +13,7 @@ django-heroku = "*"
 psycopg2 = "*"
 spotipy = "*"
 python-decouple = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"
