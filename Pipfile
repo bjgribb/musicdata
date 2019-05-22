@@ -14,6 +14,7 @@ psycopg2 = "*"
 spotipy = "*"
 python-decouple = "*"
 requests = "*"
+six = "*"
 
 [requires]
 python_version = "3.7"

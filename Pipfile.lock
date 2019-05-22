@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "df85f6cca8c5686e2ef8a28513ba68b3b86135068e7f87ebca599d973d2a62e5"
+            "sha256": "c51eb339ef3cbb77e5a84316a344326b306d8fe1adda12441e10e9947eac030c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -106,6 +106,14 @@
             ],
             "index": "pypi",
             "version": "==2.22.0"
+        },
+        "six": {
+            "hashes": [
+                "sha256:3350809f0555b11f552448330d0b52d5f24c91a322ea4a15ef22629740f3761c",
+                "sha256:d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"
+            ],
+            "index": "pypi",
+            "version": "==1.12.0"
         },
         "spotipy": {
             "hashes": [
@@ -288,6 +296,7 @@
                 "sha256:3350809f0555b11f552448330d0b52d5f24c91a322ea4a15ef22629740f3761c",
                 "sha256:d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"
             ],
+            "index": "pypi",
             "version": "==1.12.0"
         },
         "snowballstemmer": {
