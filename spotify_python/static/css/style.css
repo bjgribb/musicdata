@@ -17,13 +17,23 @@ a {
 }
 
 .login {
+    background: #1DB954;
+    border-radius: 500px;
+    color: #FFFFFF;
+    border: none;
     height: 30px;
-    line-height: 30px;
-    white-space: nowrap;
 }
 
 .login_ref {
     text-decoration: none;
+}
+
+.user {
+    margin-top: 1rem;
+}
+
+.user_img img {
+    border-radius: 100%;
 }
 
 .container {

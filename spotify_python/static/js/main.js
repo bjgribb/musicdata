@@ -40,7 +40,13 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         success: function(response) {
             console.log(response)
-            user.innerText = `Welcome ${response.display_name}`
+            let user_info = document.createElement('div')
+            let user_img = document.createElement('div')
+            user.appendChild(user_info)
+            user.appendChild(user_img)
+            user_info.innerText = `Welcome ${response.display_name}`
+            user_img.className = `user_img`
+            user_img.innerHTML = `<img src=${response.images[0].url}>`
         }
     })
 })
