@@ -73,19 +73,3 @@ def login(request):
 
     # token = util.prompt_for_user_token(username, scope, client_id=config('client_id'), client_secret=config('client_secret'), redirect_uri=config('redirect_url'))
     return render(request, 'login.html')
-
-{
-    'Server': 'nginx', 
-    'Date': 'Tue, 21 May 2019 19:37:40 GMT', 
-    'Content-Type': 'text/html;charset=utf-8', 
-    'Transfer-Encoding': 'chunked', 
-    'Connection': 'keep-alive', 
-    'Keep-Alive': 'timeout=600', 
-    'Vary': 'Accept-Encoding', 
-    'X-UA-Compatible': 'IE=edge', 
-    'Cache-Control': 'no-cache, no-store, must-revalidate', 
-    'Pragma': 'no-cache', 
-    'X-Frame-Options': 'deny', 
-    'Content-Security-Policy': "default-src 'self'; script-src 'self' https://www.google-analytics.com https://www.google.com https://www.gstatic.com https://accounts.scdn.co; img-src 'self' https://i.imgur.com https://d2mv8tnci56s9d.cloudfront.net https://profile-images.scdn.co https://aci.scdn.co https://graph.facebook.com https://fbcdn-profile-a.akamaihd.net https://scontent.xx.fbcdn.net https://platform-lookaside.fbsbx.com https://www.google-analytics.com https://stats.g.doubleclick.net data: https://accounts.scdn.co; font-src 'self' https://sp-bootstrap.global.ssl.fastly.net https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://accounts.scdn.co; frame-src 'self' https://www.spotify.com https://www.google.com https://app.adjust.com https://itunes.apple.com itms-apps:;", 
-    'X-Content-Security-Policy': "default-src 'self'; script-src 'self' https://www.google-analytics.com https://www.google.com https://www.gstatic.com https://accounts.scdn.co; img-src 'self' https://i.imgur.com https://d2mv8tnci56s9d.cloudfront.net https://profile-images.scdn.co https://aci.scdn.co https://graph.facebook.com https://fbcdn-profile-a.akamaihd.net https://scontent.xx.fbcdn.net https://platform-lookaside.fbsbx.com https://www.google-analytics.com https://stats.g.doubleclick.net data: https://accounts.scdn.co; font-src 'self' https://sp-bootstrap.global.ssl.fastly.net https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://accounts.scdn.co; frame-src 'self' https://www.spotify.com https://www.google.com https://app.adjust.com https://itunes.apple.com itms-apps:;", 
-    'Set-Cookie': 'csrf_token=AQCFeVoJlR2eZ7-FSVmXyZiud9eFi7h8jr38spHirh-f1_3-o9fB3CPhsOkD3fq4U_uu7DwvFgMp1Np6;Version=1;Domain=accounts.spotify.com;Path=/;Secure', 'X-Content-Type-Options': 'nosniff', 'Strict-Transport-Security': 'max-age=31536000', 'Content-Encoding': 'gzip'}

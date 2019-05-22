@@ -1,15 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{{ post.get_full_path }}
-{{ token }}
+
 <form method='POST'>
  {% csrf_token %}
 <input type='text' name='artist_search'>
 <button type='submit'>Search</button>
 </form>
 
-<div class='js_check'>Check</div>
+<button class='js_check'>Check</button>
 
 <div class='main-container'>
 
@@ -38,5 +37,5 @@
 {% endfor %}
 
 </div>
-
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 {% endblock %}
