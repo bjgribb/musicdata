@@ -16,6 +16,13 @@ a {
     width: 70px;
 }
 
+button {
+    background: #1DB954;
+    border-radius: 500px;
+    color: #FFFFFF;
+    border: none;
+}
+
 .login {
     background: #1DB954;
     border-radius: 500px;
