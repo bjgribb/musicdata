@@ -1,12 +1,9 @@
 button = document.querySelector('.js_check')
 loginButton = document.querySelector('.login')
 user = document.querySelector('.user')
-
-function check() {
-    button.addEventListener('click', function() {
-        console.log(window.location.hash)
-    })
-}
+mainContainer = document.querySelector('.main_container')
+searchValue = document.querySelector('.search_value')
+searchInput = searchValue.value
 
 function getToken () {
     var str = window.location.hash
@@ -20,34 +17,52 @@ function getToken () {
     return token
 }
 
-// $.ajax({
-//     url: 'https://api.spotify.com/v1/me',
-//     headers: {
-//         'Authorization': 'Bearer ' + token
-//     },
-//     success: function(response) {
-//         console.log(response)
-//         user.innerText = response
-//     }
-// })
-
-document.addEventListener('DOMContentLoaded', function() {
-    getToken()
+function getUser (token) {
     $.ajax({
         url: 'https://api.spotify.com/v1/me',
         headers: {
             'Authorization': 'Bearer ' + token
         },
         success: function(response) {
-            console.log(response)
-            let user_info = document.createElement('div')
-            let user_img = document.createElement('div')
-            user.appendChild(user_info)
-            user.appendChild(user_img)
-            user_info.innerText = `Welcome ${response.display_name}`
-            user_img.className = `user_img`
-            user_img.innerHTML = `<img src=${response.images[0].url}>`
+            let userInfo = document.createElement('div')
+            let userImg = document.createElement('div')
+            user.appendChild(userInfo)
+            user.appendChild(userImg)
+            userInfo.innerText = `Welcome ${response.display_name}`
+            userImg.className = `user_img`
+            userImg.innerHTML = `<img src=${response.images[0].url}>`
+            userId = response.id
+            getUserPlaylists(token, userId)
         }
     })
+}
+
+function getUserPlaylists (token, userId) {
+    $.ajax({
+        url: `https://api.spotify.com/v1/users/${userId}/playlists`,
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
+        success: function (response) {
+            for (let playlist of response.items) {
+                console.log(playlist)
+                let playlistName = document.createElement('div')
+                mainContainer.appendChild(playlistName)
+                playlistName.innerText = playlist.name
+                let playlistArt = document.createElement('div')
+                playlistName.appendChild(playlistArt)
+                playlistArt.innerHTML = `<img src=${playlist.images[0].url}>`                     
+            }
+        }            
+    })
+}
+
+// function getPlaylistTracks (token)
+//     https://api.spotify.com/v1/playlists/{playlist_id}/tracks
+
+document.addEventListener('DOMContentLoaded', function() {
+    getToken()
+    getUser(token)
+    // getUserPlaylists(token, userId)
 })
 

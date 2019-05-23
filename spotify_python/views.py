@@ -63,13 +63,8 @@ def album_tracks(request, album_id):
 def login(request):
 
     if request.method == 'POST':
-        username = request.POST.get('login', None)
         redirect_uri = urllib.parse.quote(config('redirect_url'))
         implicit_url = f'''https://accounts.spotify.com/authorize?client_id={config('client_id')}&redirect_uri={redirect_uri}&scope=user-read-private&response_type=token'''
         return redirect(implicit_url)
 
-    else:
-        username = ''
-
-    # token = util.prompt_for_user_token(username, scope, client_id=config('client_id'), client_secret=config('client_secret'), redirect_uri=config('redirect_url'))
     return render(request, 'login.html')

@@ -2,19 +2,20 @@
 
 {% block content %}
 
-<form method='POST'>
+{% comment %} <form method='POST' class='search_bar'>
  {% csrf_token %}
 <input type='text' name='artist_search'>
-<button type='submit'>Search</button>
-</form>
+<button type='submit' class='submit-button'>Search</button>
+</form> {% endcomment %}
 
-<div class='main-container'>
+<input type='text' class='search_value'><button>Search</button>
+
+<div class='main_container'>
 
 <div class='user'>
-
 </div>
 
-{% for artist in artists %}
+{% comment %} {% for artist in artists %}
     <section>
         <div class='container'>
         <a href="{% url 'albums' artist_id=artist.id %}">
@@ -36,7 +37,7 @@
                 </div>
         </div>
     </section>
-{% endfor %}
+{% endfor %} {% endcomment %}
 
 </div>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
