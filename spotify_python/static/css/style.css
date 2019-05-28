@@ -39,8 +39,21 @@ button {
     margin-top: 1rem;
 }
 
-.user_img img {
+.userImg {
+    text-align: center;
+}
+
+.userImg img {
     border-radius: 100%;
+}
+
+.playlistImg {
+    text-align: center;
+}
+
+.playlistImg img {
+    height: 200px;
+    width: 200px;
 }
 
 .container {
