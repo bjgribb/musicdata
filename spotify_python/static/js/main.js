@@ -2,8 +2,6 @@ button = document.querySelector('.js_check')
 loginButton = document.querySelector('.login')
 user = document.querySelector('.user')
 mainContainer = document.querySelector('.main_container')
-searchValue = document.querySelector('.search_value')
-searchInput = searchValue.value
 
 function getToken () {
   var str = window.location.hash
@@ -45,24 +43,34 @@ function getUserPlaylists (token, userId) {
     },
     success: function (response) {
       for (let playlist of response.items) {
-        console.log(playlist)
-        let playlistName = document.createElement('div')
-        mainContainer.appendChild(playlistName)
-        playlistName.innerText = playlist.name
+        let playlistData = document.createElement('div')
+        playlistData.className = 'playlistData'
+        mainContainer.appendChild(playlistData)
         let playlistArt = document.createElement('div')
         playlistArt.className = 'playlistImg'
-        playlistName.appendChild(playlistArt)
+        playlistData.appendChild(playlistArt)
         playlistArt.innerHTML = `<img src=${playlist.images[0].url}>`
+        playlistId = playlist.id
+        $.ajax({
+          url: `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
+          headers: {
+            'Authorization': 'Bearer ' + token
+          },
+          success: function (response) {
+            let playlistTracks = document.createElement('div')
+            playlistData.appendChild(playlistTracks)
+            playlistTracks.className = 'playlistTracks'
+            for (let tracks of response.items) {
+              console.log(tracks)
+            }
+          }
+        })
       }
     }
   })
 }
 
-// function getPlaylistTracks (token)
-//     https://api.spotify.com/v1/playlists/{playlist_id}/tracks
-
 document.addEventListener('DOMContentLoaded', function () {
   getToken()
   getUser(token)
-  // getUserPlaylists(token, userId)
 })
