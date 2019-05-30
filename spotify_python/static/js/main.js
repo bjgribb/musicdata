@@ -1,5 +1,6 @@
 const user = document.querySelector('.user')
-const mainContainer = document.querySelector('.main_container')
+const player = document.querySelector('.player')
+let mainContainer = document.querySelector('.main_container')
 var token = getToken()
 
 function getToken () {
@@ -65,7 +66,16 @@ function getPlaylistTracks (token, playlistId) {
       'Authorization': 'Bearer ' + token
     },
     success: function (response) {
-      console.log(response)
+      mainContainer.innerHTML = ''
+      for (let track of response.items) {
+        console.log(track)
+        let playlistTrack = document.createElement('div')
+        playlistTrack.innerHTML = `<img src=${track.track.album.images[2].url}>`
+        mainContainer.appendChild(playlistTrack)
+        playlistTrack.addEventListener('click', function () {
+          player.innerHTML = `<iframe src="https://open.spotify.com/embed/track/${track.track.id}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`
+        })
+      }
     }
   })
 }
