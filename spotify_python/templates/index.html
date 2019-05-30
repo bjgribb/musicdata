@@ -2,43 +2,11 @@
 
 {% block content %}
 
-{% comment %} <form method='POST' class='search_bar'>
- {% csrf_token %}
-<input type='text' name='artist_search'>
-<button type='submit' class='submit-button'>Search</button>
-</form> {% endcomment %}
-
-<input type='text' class='search_value'><button>Search</button>
-
 <div class='user'>
 </div>
 
 <div class='main_container'>
-
-{% comment %} {% for artist in artists %}
-    <section>
-        <div class='container'>
-        <a href="{% url 'albums' artist_id=artist.id %}">
-            {% if artist.images.1.url %}
-                <img src='{{ artist.images.1.url }}' id='image'>
-            {% else %}
-                <img src='/static/pics/Spotify_Icon_RGB_Green.png' id='image'>
-            {% endif %}
-                <div class='text'>
-                    <h1>{{ artist.name }}</h1></a>
-                    <p><strong>Followers:</strong> {{ artist.followers.total }}</p>
-                    <p><strong>Popularity:</strong> {{ artist.popularity }}</p>
-                    <div class='login'>
-                        <a href='{{ artist.external_urls.spotify }}' target='_blank' class='login_ref'>
-                            Open with 
-                            <img class="spotify_logo" src="/static/pics/Spotify_Logo_CMYK_Green.png">
-                        </a>
-                    </div>
-                </div>
-        </div>
-    </section>
-{% endfor %} {% endcomment %}
-
 </div>
+
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 {% endblock %}
