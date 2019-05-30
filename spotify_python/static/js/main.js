@@ -70,7 +70,7 @@ function getPlaylistTracks (token, playlistId) {
       for (let track of response.items) {
         console.log(track)
         let playlistTrack = document.createElement('div')
-        playlistTrack.innerHTML = `<img src=${track.track.album.images[2].url}>`
+        playlistTrack.innerHTML = `<img src=${track.track.album.images[1].url}>`
         mainContainer.appendChild(playlistTrack)
         playlistTrack.addEventListener('click', function () {
           player.innerHTML = `<iframe src="https://open.spotify.com/embed/track/${track.track.id}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`
