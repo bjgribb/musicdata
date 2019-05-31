@@ -12,8 +12,16 @@ a {
     color: #FFFFFF;
 }
 
-.spotify_logo {
+.header {
+    text-align: center;
+}
+
+.logo {
     width: 70px;
+}
+
+.intro {
+    text-align: center;
 }
 
 button {
@@ -44,7 +52,7 @@ button {
     text-decoration: none;
 }
 
-.user {
+.info {
     margin-top: 1rem;
     margin-bottom: 1rem;
     text-align: center;

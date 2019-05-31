@@ -1,8 +1,13 @@
 {% extends 'base.html'%}
 
 {% block content %}
+<div class='intro'>
+    <p>Welcome to Spotify Me an app designed by Brian Gribbon utilizing
+        the Spotify API to get the most of what Spotify has to offer!</p>
+<div>
     <form method='POST'>
     {% csrf_token %}
     <button type='submit' class='login'>Login with Spotify</button>
     </form>
+</div>
 {% endblock %}

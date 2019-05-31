@@ -1,4 +1,4 @@
-const user = document.querySelector('.user')
+const info = document.querySelector('.info')
 const player = document.querySelector('.player')
 const playerInfo = document.querySelector('.player_info')
 let mainContainer = document.querySelector('.main_container')
@@ -25,8 +25,8 @@ function getUser (token) {
     success: function (response) {
       let userInfo = document.createElement('div')
       let userImg = document.createElement('div')
-      user.appendChild(userInfo)
-      user.appendChild(userImg)
+      info.appendChild(userInfo)
+      info.appendChild(userImg)
       userInfo.innerText = `Welcome ${response.display_name}`
       userImg.className = `userImg`
       userImg.innerHTML = `<img src=${response.images[0].url}>`
