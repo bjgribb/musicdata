@@ -1,6 +1,7 @@
 const info = document.querySelector('.info')
 const player = document.querySelector('.player')
 const playerInfo = document.querySelector('.player_info')
+const backDiv = document.querySelector('.back_div')
 let mainContainer = document.querySelector('.main_container')
 var token = getToken()
 
@@ -55,15 +56,16 @@ function getUserPlaylists (token, userId) {
         playlistData.appendChild(playlistArt)
         playlistArt.innerHTML = `<img src=${playlist.images[0].url}>`
         let playlistId = playlist.id
+        let playlistName = playlist.name
         playlistData.addEventListener('click', function () {
-          getPlaylistTracks(token, playlistId)
+          getPlaylistTracks(token, playlistId, playlistName)
         })
       }
     }
   })
 }
 
-function getPlaylistTracks (token, playlistId) {
+function getPlaylistTracks (token, playlistId, playlistName) {
   $.ajax({
     url: `https://api.spotify.com/v1/playlists/${playlistId}/tracks`,
     headers: {
@@ -74,11 +76,14 @@ function getPlaylistTracks (token, playlistId) {
     },
     success: function (response) {
       mainContainer.innerHTML = ''
+      backDiv.innerHTML = `<input type="button" class='back_button' value="Back" onClick="document.location.reload(true)">`
       window.scroll({
         top: 0,
         left: 0,
         behavior: 'auto'
       })
+      info.innerHTML = ''
+      info.innerHTML = `<h1>${playlistName}</h1>`
       for (let track of response.items) {
         console.log(track)
         let playlistTrack = document.createElement('div')
