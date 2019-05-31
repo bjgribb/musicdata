@@ -74,6 +74,11 @@ function getPlaylistTracks (token, playlistId) {
     },
     success: function (response) {
       mainContainer.innerHTML = ''
+      window.scroll({
+        top: 0,
+        left: 0,
+        behavior: 'auto'
+      })
       for (let track of response.items) {
         console.log(track)
         let playlistTrack = document.createElement('div')
