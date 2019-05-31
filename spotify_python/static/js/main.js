@@ -42,6 +42,9 @@ function getUserPlaylists (token, userId) {
     headers: {
       'Authorization': 'Bearer ' + token
     },
+    data: {
+      'limit': '50'
+    },
     success: function (response) {
       for (let playlist of response.items) {
         let playlistData = document.createElement('div')
@@ -66,6 +69,9 @@ function getPlaylistTracks (token, playlistId) {
     headers: {
       'Authorization': 'Bearer ' + token
     },
+    data: {
+      'limit': '100'
+    },
     success: function (response) {
       mainContainer.innerHTML = ''
       for (let track of response.items) {
@@ -78,7 +84,7 @@ function getPlaylistTracks (token, playlistId) {
           getTrackInfo(token, trackId)
           player.innerHTML = `<iframe src="https://open.spotify.com/embed/track/${trackId}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`
           window.scroll({
-            top: 0,
+            top: 100,
             left: 0,
             behavior: 'smooth'
           })
