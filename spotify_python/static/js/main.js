@@ -2,8 +2,8 @@ const info = document.querySelector('.info')
 const player = document.querySelector('.player')
 const playerInfo = document.querySelector('.player_info')
 const backDiv = document.querySelector('.back_div')
-let mainContainer = document.querySelector('.main_container')
-var token = getToken()
+const token = getToken()
+const mainContainer = document.querySelector('.main_container')
 
 function getToken () {
   var str = window.location.hash
@@ -12,9 +12,12 @@ function getToken () {
   for (let i = 0; i < vars.length; i++) {
     var tmp = vars[i].split('=')
     key[tmp[0]] = tmp[1]
+    return key['#access_token']
   }
-  token = key['#access_token']
-  return token
+}
+
+function badToken () {
+  window.location.replace('http://127.0.0.1:8000/login/')
 }
 
 function getUser (token) {
@@ -85,7 +88,6 @@ function getPlaylistTracks (token, playlistId, playlistName) {
       info.innerHTML = ''
       info.innerHTML = `<h1>${playlistName}</h1>`
       for (let track of response.items) {
-        console.log(track)
         let playlistTrack = document.createElement('div')
         let trackId = track.track.id
         playlistTrack.innerHTML = `<img src=${track.track.album.images[1].url}>`
@@ -119,5 +121,11 @@ function getTrackInfo (token, trackId) {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-  getUser(token)
+  if (window.location.pathname === '/home/') {
+    if (token) {
+      getUser(token)
+    } else {
+      window.location.pathname = '/login/'
+    }
+  }
 })
