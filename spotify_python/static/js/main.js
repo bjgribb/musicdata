@@ -1,5 +1,6 @@
 const user = document.querySelector('.user')
 const player = document.querySelector('.player')
+const playerInfo = document.querySelector('.player_info')
 let mainContainer = document.querySelector('.main_container')
 var token = getToken()
 
@@ -70,12 +71,33 @@ function getPlaylistTracks (token, playlistId) {
       for (let track of response.items) {
         console.log(track)
         let playlistTrack = document.createElement('div')
+        let trackId = track.track.id
         playlistTrack.innerHTML = `<img src=${track.track.album.images[1].url}>`
         mainContainer.appendChild(playlistTrack)
         playlistTrack.addEventListener('click', function () {
-          player.innerHTML = `<iframe src="https://open.spotify.com/embed/track/${track.track.id}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`
+          getTrackInfo(token, trackId)
+          player.innerHTML = `<iframe src="https://open.spotify.com/embed/track/${trackId}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`
+          window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+          })
         })
       }
+    }
+  })
+}
+
+function getTrackInfo (token, trackId) {
+  $.ajax({
+    url: `https://api.spotify.com/v1/audio-features/${trackId}`,
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+    success: function (response) {
+      console.log(response)
+      playerInfo.innerHTML = `<p>Danceability: ${response.danceability}</p>
+                              <p>Energy: ${response.energy}</p>`
     }
   })
 }
