@@ -94,7 +94,7 @@ function getPlaylistTracks (token, playlistId, playlistName) {
           getTrackInfo(token, trackId)
           player.innerHTML = `<iframe src="https://open.spotify.com/embed/track/${trackId}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`
           window.scroll({
-            top: 100,
+            top: 150,
             left: 0,
             behavior: 'smooth'
           })
