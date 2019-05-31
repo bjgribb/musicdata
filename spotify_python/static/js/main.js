@@ -16,10 +16,6 @@ function getToken () {
   }
 }
 
-function badToken () {
-  window.location.replace('http://127.0.0.1:8000/login/')
-}
-
 function getUser (token) {
   $.ajax({
     url: 'https://api.spotify.com/v1/me',
@@ -113,9 +109,9 @@ function getTrackInfo (token, trackId) {
       'Authorization': 'Bearer ' + token
     },
     success: function (response) {
-      console.log(response)
       playerInfo.innerHTML = `<p>Danceability: ${response.danceability}</p>
-                              <p>Energy: ${response.energy}</p>`
+                              <p>Energy: ${response.energy}</p>
+                              <p>Acousticness: ${response.acousticness}</p>`
     }
   })
 }
