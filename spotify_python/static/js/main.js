@@ -4,6 +4,7 @@ const playerInfo = document.querySelector('.player_info')
 const backDiv = document.querySelector('.back_div')
 const token = getToken()
 const mainContainer = document.querySelector('.main_container')
+const login = document.querySelector('.login')
 
 function getToken () {
   var str = window.location.hash
@@ -23,13 +24,20 @@ function getUser (token) {
       'Authorization': 'Bearer ' + token
     },
     success: function (response) {
+      console.log(response)
       let userInfo = document.createElement('div')
       let userImg = document.createElement('div')
       info.appendChild(userInfo)
       info.appendChild(userImg)
-      userInfo.innerText = `Welcome ${response.display_name}`
+      if (response.display_name === null) {
+        userInfo.innerText = `Welcome ${response.id}`
+      } else {
+        userInfo.innerText = `Welcome ${response.display_name}`
+      }
       userImg.className = `userImg`
-      userImg.innerHTML = `<img src=${response.images[0].url}>`
+      if (response.images.length > 0) {
+        userImg.innerHTML = `<img src=${response.images[0].url}>`
+      }
       let userId = response.id
       getUserPlaylists(token, userId)
     }
