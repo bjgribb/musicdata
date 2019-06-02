@@ -5,6 +5,9 @@ const backDiv = document.querySelector('.back_div')
 const token = getToken()
 const mainContainer = document.querySelector('.main_container')
 const login = document.querySelector('.login')
+const danceabilityModal = document.querySelector('.danceability_modal')
+const energyModal = document.querySelector('.energy_modal')
+const acousticnessModal = document.querySelector('acousticness_modal')
 
 function getToken () {
   var str = window.location.hash
@@ -17,6 +20,10 @@ function getToken () {
   }
 }
 
+// danceabilityInfo.onclick = function () {
+//   danceabilityModal.style.display = 'block'
+// }
+
 function getUser (token) {
   $.ajax({
     url: 'https://api.spotify.com/v1/me',
@@ -24,7 +31,6 @@ function getUser (token) {
       'Authorization': 'Bearer ' + token
     },
     success: function (response) {
-      console.log(response)
       let userInfo = document.createElement('div')
       let userImg = document.createElement('div')
       info.appendChild(userInfo)
@@ -117,9 +123,33 @@ function getTrackInfo (token, trackId) {
       'Authorization': 'Bearer ' + token
     },
     success: function (response) {
-      playerInfo.innerHTML = `<p>Danceability: ${response.danceability}</p>
-                              <p>Energy: ${response.energy}</p>
-                              <p>Acousticness: ${response.acousticness}</p>`
+      playerInfo.innerHTML = `<div class='danceability_info'>Danceability: ${response.danceability}
+                              </div>
+                              <div class='energy_info'>Energy: ${response.energy}
+                              </div>
+                              <div class='acousticness_info'>Acousticness: ${response.acousticness}
+                              </div>`
+      let danceabilityInfo = document.querySelector('.danceability_info')
+      let energyInfo = document.querySelector('.energy_info')
+      let acousticnessInfo = document.querySelector('.acousticness_info')
+      danceabilityInfo.addEventListener('click', function () {
+        danceabilityModal.style.display = 'block'
+      })
+      energyInfo.addEventListener('click', function () {
+        energyModal.style.display = 'block'
+      })
+      acousticnessInfo.addEventListener('click', function () {
+        acousticnessModal.style.display = 'block'
+      })
+      window.onclick = function (event) {
+        if (event.target === energyModal) {
+          energyModal.style.display = 'none'
+        } else {
+          if (event.target === danceabilityModal) {
+            danceabilityModal.style.display = 'none'
+          }
+        }
+      }
     }
   })
 }
