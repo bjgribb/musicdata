@@ -4,10 +4,9 @@ const playerInfo = document.querySelector('.player_info')
 const backDiv = document.querySelector('.back_div')
 const token = getToken()
 const mainContainer = document.querySelector('.main_container')
-const login = document.querySelector('.login')
 const danceabilityModal = document.querySelector('.danceability_modal')
 const energyModal = document.querySelector('.energy_modal')
-const acousticnessModal = document.querySelector('acousticness_modal')
+const acousticnessModal = document.querySelector('.acousticness_modal')
 
 function getToken () {
   var str = window.location.hash
@@ -19,10 +18,6 @@ function getToken () {
     return key['#access_token']
   }
 }
-
-// danceabilityInfo.onclick = function () {
-//   danceabilityModal.style.display = 'block'
-// }
 
 function getUser (token) {
   $.ajax({
@@ -147,6 +142,10 @@ function getTrackInfo (token, trackId) {
         } else {
           if (event.target === danceabilityModal) {
             danceabilityModal.style.display = 'none'
+          } else {
+            if (event.target === acousticnessModal) {
+              acousticnessModal.style.display = 'none'
+            }
           }
         }
       }

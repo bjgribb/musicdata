@@ -39,6 +39,7 @@ button {
     border: none;
     height: 30px;
     width: 70px;
+    margin-left: 1rem;
 }
 
 .login_ref {
@@ -73,6 +74,7 @@ button {
 .player_info {
     display: flex;
     justify-content: space-evenly;
+    margin-top: 1rem;
 }
 
 .main_container {
@@ -114,7 +116,7 @@ button {
 
 .modal_content {
     color: #191414;
-    background-color: #fefefe;
+    background-color: #1DB954;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
