@@ -127,6 +127,7 @@ function getTrackInfo (token, trackId) {
       let danceabilityInfo = document.querySelector('.danceability_info')
       let energyInfo = document.querySelector('.energy_info')
       let acousticnessInfo = document.querySelector('.acousticness_info')
+      let span = document.getElementsByClassName('close')[0]
       danceabilityInfo.addEventListener('click', function () {
         danceabilityModal.style.display = 'block'
       })
@@ -136,6 +137,11 @@ function getTrackInfo (token, trackId) {
       acousticnessInfo.addEventListener('click', function () {
         acousticnessModal.style.display = 'block'
       })
+      span.onclick = function () {
+        danceabilityModal.style.display = 'none'
+        energyModal.style.display = 'none'
+        acousticnessModal.style.display = 'none'
+      }
       window.onclick = function (event) {
         if (event.target === energyModal) {
           energyModal.style.display = 'none'

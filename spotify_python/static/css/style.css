@@ -123,6 +123,13 @@ button {
     width: 80%; 
 }
 
+.close {
+    color: #191414;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
 @media only screen and (min-width: 700px) {
     .main_container {
         display: flex;
