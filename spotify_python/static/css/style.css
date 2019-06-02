@@ -123,12 +123,26 @@ button {
     width: 80%; 
 }
 
-.close {
+.danceability_close {
     color: #191414;
     float: right;
     font-size: 28px;
     font-weight: bold;
   }
+
+.energy_close {
+    color: #191414;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.acousticness_close {
+    color: #191414;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
 
 @media only screen and (min-width: 700px) {
     .main_container {
