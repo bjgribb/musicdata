@@ -84,7 +84,7 @@ function getPlaylistTracks (token, playlistId, playlistName) {
     },
     success: function (response) {
       mainContainer.innerHTML = ''
-      backDiv.innerHTML = `<input type="button" class='back_button' value="Back" onClick="document.location.reload(true)">`
+      backDiv.innerHTML = `<div class='back_button' onClick="document.location.reload(true)">Back</div>`
       window.scroll({
         top: 0,
         left: 0,

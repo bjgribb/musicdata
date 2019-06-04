@@ -35,9 +35,11 @@ button {
 .back_button {
     background: #1DB954;
     border-radius: 500px;
+    text-align: center;
     color: #FFFFFF;
     border: none;
     height: 30px;
+    line-height: 30px;
     width: 70px;
     margin-left: 1rem;
 }
