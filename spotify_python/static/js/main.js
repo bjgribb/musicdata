@@ -57,12 +57,19 @@ function getUserPlaylists (token, userId) {
     success: function (response) {
       for (let playlist of response.items) {
         let playlistData = document.createElement('div')
-        playlistData.className = `playlistData ${playlist.id}`
+        playlistData.className = `playlistData`
         mainContainer.appendChild(playlistData)
-        let playlistArt = document.createElement('div')
-        playlistArt.className = 'playlistImg'
-        playlistData.appendChild(playlistArt)
-        playlistArt.innerHTML = `<img src=${playlist.images[0].url}>`
+        let playlistDataFlipper = document.createElement('div')
+        playlistDataFlipper.className = 'flipper'
+        playlistData.appendChild(playlistDataFlipper)
+        let playlistDataFront = document.createElement('div')
+        playlistDataFront.className = 'front'
+        playlistDataFlipper.appendChild(playlistDataFront)
+        playlistDataFront.innerHTML = `<img src=${playlist.images[0].url}>`
+        let playlistDataBack = document.createElement('div')
+        playlistDataBack.className = 'back'
+        playlistDataBack.innerHTML = `<p>${playlist.name}</p>`
+        playlistDataFlipper.appendChild(playlistDataBack)
         let playlistId = playlist.id
         let playlistName = playlist.name
         playlistData.addEventListener('click', function () {
