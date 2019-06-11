@@ -100,6 +100,9 @@ button {
 
 .back {
     transform: rotateY(180deg);
+    font-size: 2rem;
+    background: #1DB954;
+    color: #191414;
 }
 
 .player_section {

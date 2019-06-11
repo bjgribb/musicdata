@@ -100,11 +100,24 @@ function getPlaylistTracks (token, playlistId, playlistName) {
       info.innerHTML = ''
       info.innerHTML = `<h1>${playlistName}</h1>`
       for (let track of response.items) {
-        let playlistTrack = document.createElement('div')
+        console.log(track)
+        let playlistData = document.createElement('div')
+        playlistData.className = `playlistData`
+        mainContainer.appendChild(playlistData)
+        let playlistDataFlipper = document.createElement('div')
+        playlistDataFlipper.className = 'flipper'
+        playlistData.appendChild(playlistDataFlipper)
+        let playlistDataFront = document.createElement('div')
+        playlistDataFront.className = 'front'
+        playlistDataFlipper.appendChild(playlistDataFront)
+        playlistDataFront.innerHTML = `<img src=${track.track.album.images[1].url}>`
+        let playlistDataBack = document.createElement('div')
+        playlistDataBack.className = 'back'
+        playlistDataBack.innerHTML = `<p>${track.track.name}</p>
+                                      <p>${track.track.artists[0].name}</p>`
+        playlistDataFlipper.appendChild(playlistDataBack)
         let trackId = track.track.id
-        playlistTrack.innerHTML = `<img src=${track.track.album.images[1].url}>`
-        mainContainer.appendChild(playlistTrack)
-        playlistTrack.addEventListener('click', function () {
+        playlistData.addEventListener('click', function () {
           getTrackInfo(token, trackId)
           player.innerHTML = `<iframe src="https://open.spotify.com/embed/track/${trackId}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`
           window.scroll({
