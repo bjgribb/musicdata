@@ -7,6 +7,37 @@ const mainContainer = document.querySelector('.main_container')
 const danceabilityModal = document.querySelector('.danceability_modal')
 const energyModal = document.querySelector('.energy_modal')
 const acousticnessModal = document.querySelector('.acousticness_modal')
+let trackInfoList = []
+let trackInfoListDance = trackInfoList.sort((a, b) => (a.danceability > b.danceability) ? -1 : 1)
+
+// Functions to create divs for data
+function createPlaylistData () {
+  let playlistData = document.createElement('div')
+  playlistData.className = 'playlistData'
+  mainContainer.appendChild(playlistData)
+  return playlistData
+}
+
+function createDataFlipper (playlistData) {
+  let playlistDataFlipper = document.createElement('div')
+  playlistDataFlipper.className = 'flipper'
+  playlistData.appendChild(playlistDataFlipper)
+  return playlistDataFlipper
+}
+
+function createFlipperFront (playlistDataFlipper) {
+  let playlistDataFront = document.createElement('div')
+  playlistDataFront.className = 'front'
+  playlistDataFlipper.appendChild(playlistDataFront)
+  return playlistDataFront
+}
+
+function createFlipperBack (playlistDataFlipper) {
+  let playlistDataBack = document.createElement('div')
+  playlistDataBack.className = 'back'
+  playlistDataFlipper.appendChild(playlistDataBack)
+  return playlistDataBack
+}
 
 function getToken () {
   var str = window.location.hash
@@ -19,6 +50,7 @@ function getToken () {
   }
 }
 
+// Spotify AJAX request functions
 function getUser (token) {
   $.ajax({
     url: 'https://api.spotify.com/v1/me',
@@ -45,7 +77,7 @@ function getUser (token) {
   })
 }
 
-function getUserPlaylists (token, userId) {
+function getUserPlaylists (token, userId, playlistDataBack, playlistDataFront, playlistData) {
   $.ajax({
     url: `https://api.spotify.com/v1/users/${userId}/playlists`,
     headers: {
@@ -56,22 +88,14 @@ function getUserPlaylists (token, userId) {
     },
     success: function (response) {
       for (let playlist of response.items) {
-        let playlistData = document.createElement('div')
-        playlistData.className = `playlistData`
-        mainContainer.appendChild(playlistData)
-        let playlistDataFlipper = document.createElement('div')
-        playlistDataFlipper.className = 'flipper'
-        playlistData.appendChild(playlistDataFlipper)
-        let playlistDataFront = document.createElement('div')
-        playlistDataFront.className = 'front'
-        playlistDataFlipper.appendChild(playlistDataFront)
-        playlistDataFront.innerHTML = `<img src=${playlist.images[0].url}>`
-        let playlistDataBack = document.createElement('div')
-        playlistDataBack.className = 'back'
-        playlistDataBack.innerHTML = `<p>${playlist.name}</p>`
-        playlistDataFlipper.appendChild(playlistDataBack)
+        let playlistData = createPlaylistData()
+        let playlistDataFlipper = createDataFlipper(playlistData)
+        let playlistDataFront = createFlipperFront(playlistDataFlipper)
+        let playlistDataBack = createFlipperBack(playlistDataFlipper)
         let playlistId = playlist.id
         let playlistName = playlist.name
+        playlistDataFront.innerHTML = `<img src=${playlist.images[0].url}>`
+        playlistDataBack.innerHTML = `<p>${playlist.name}</p>`
         playlistData.addEventListener('click', function () {
           getPlaylistTracks(token, playlistId, playlistName)
         })
@@ -100,23 +124,15 @@ function getPlaylistTracks (token, playlistId, playlistName) {
       info.innerHTML = ''
       info.innerHTML = `<h1>${playlistName}</h1>`
       for (let track of response.items) {
-        console.log(track)
-        let playlistData = document.createElement('div')
-        playlistData.className = `playlistData`
-        mainContainer.appendChild(playlistData)
-        let playlistDataFlipper = document.createElement('div')
-        playlistDataFlipper.className = 'flipper'
-        playlistData.appendChild(playlistDataFlipper)
-        let playlistDataFront = document.createElement('div')
-        playlistDataFront.className = 'front'
-        playlistDataFlipper.appendChild(playlistDataFront)
+        let playlistData = createPlaylistData()
+        let playlistDataFlipper = createDataFlipper(playlistData)
+        let playlistDataFront = createFlipperFront(playlistDataFlipper)
+        let playlistDataBack = createFlipperBack(playlistDataFlipper)
+        let trackId = track.track.id
+        getInfo(token, trackId)
         playlistDataFront.innerHTML = `<img src=${track.track.album.images[1].url}>`
-        let playlistDataBack = document.createElement('div')
-        playlistDataBack.className = 'back'
         playlistDataBack.innerHTML = `<p>${track.track.name}</p>
                                       <p>${track.track.artists[0].name}</p>`
-        playlistDataFlipper.appendChild(playlistDataBack)
-        let trackId = track.track.id
         playlistData.addEventListener('click', function () {
           getTrackInfo(token, trackId)
           player.innerHTML = `<iframe src="https://open.spotify.com/embed/track/${trackId}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`
@@ -127,6 +143,18 @@ function getPlaylistTracks (token, playlistId, playlistName) {
           })
         })
       }
+    }
+  })
+}
+
+function getInfo (token, trackId) {
+  $.ajax({
+    url: `https://api.spotify.com/v1/audio-features/${trackId}`,
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+    success: function (response) {
+      trackInfoList.push(response)
     }
   })
 }
