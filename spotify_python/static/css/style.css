@@ -57,15 +57,52 @@ button {
 .userImg img {
     border-radius: 100%;
     margin-top: 1rem;
+    height: 300px;
+    width: 300px;
 }
 
 .playlistData {
     text-align: center;
+    perspective: 1000px;
 }
 
-.playlistImg img {
-    height: 300px;
+.playlistData:hover .flipper, .playlistData.hover .flipper {
+    transform: rotateY(180deg)
+}
+
+.playlistData, .front, .back {
     width: 300px;
+    height: 300px;
+}
+
+.playlistData img{
+    width: 300px;
+    height: 300px;
+}
+
+.flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.front, .back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.front {
+    z-index: 2;
+    transform: rotateY(0deg);
+}
+
+.back {
+    transform: rotateY(180deg);
+    font-size: 2rem;
+    background: #1DB954;
+    color: #191414;
 }
 
 .player_section {
