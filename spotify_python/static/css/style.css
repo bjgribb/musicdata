@@ -67,7 +67,8 @@ button {
 }
 
 .playlistData:hover .flipper, .playlistData.hover .flipper {
-    transform: rotateY(180deg)
+    transform: rotateY(180deg);
+    cursor: pointer;
 }
 
 .playlistData, .front, .back {
@@ -114,6 +115,10 @@ button {
     display: flex;
     justify-content: space-evenly;
     margin-top: 1rem;
+}
+
+.player_info:hover div {
+    cursor: pointer;
 }
 
 .main_container {
