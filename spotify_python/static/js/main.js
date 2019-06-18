@@ -2,6 +2,7 @@ const info = document.querySelector('.info')
 const player = document.querySelector('.player')
 const playerInfo = document.querySelector('.player_info')
 const backDiv = document.querySelector('.back_div')
+const topArtists = document.querySelector('.top_artists')
 const token = getToken()
 const mainContainer = document.querySelector('.main_container')
 const danceabilityModal = document.querySelector('.danceability_modal')
@@ -73,6 +74,26 @@ function getUser (token) {
       }
       let userId = response.id
       getUserPlaylists(token, userId)
+      getUserTopArtists(token)
+    }
+  })
+}
+
+function getUserTopArtists (token) {
+  $.ajax({
+    url: 'https://api.spotify.com/v1/me/top/artists',
+    headers: {
+      'Authorization': 'Bearer ' + token
+    },
+    success: function (response) {
+      console.log(response.items)
+      for (let artist of response.items) {
+        let topArtistDiv = document.createElement('div')
+        topArtistDiv.className = 'top_artist_divs'
+        topArtists.appendChild(topArtistDiv)
+        topArtistDiv.innerHTML = `<a href=${artist.href}>
+                                  <img src=${artist.images[1].url}></a>`
+      }
     }
   })
 }
