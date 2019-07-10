@@ -91,8 +91,7 @@ function getUserTopArtists (token) {
         let topArtistDiv = document.createElement('div')
         topArtistDiv.className = 'top_artist_divs'
         topArtists.appendChild(topArtistDiv)
-        topArtistDiv.innerHTML = `<a href=${artist.href}>
-                                  <img src=${artist.images[1].url}></a>`
+        topArtistDiv.innerHTML = `<img src=${artist.images[1].url}>`
       }
     }
   })

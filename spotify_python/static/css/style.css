@@ -194,8 +194,17 @@ button {
     font-weight: bold;
 }
 
+.main_container_title {
+    width: 100%;
+    text-align: left;
+}
+
+.top_artist_divs {
+    text-align: center;
+}
+
 @media only screen and (min-width: 700px) {
-    .main_container {
+    .main_container, .top_artists {
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
