@@ -27,18 +27,18 @@ function getUser (token) {
     },
     success: function (response) {
       let userInfo = document.createElement('div')
-      let userImg = document.createElement('div')
+      // let userImg = document.createElement('div')
       info.appendChild(userInfo)
-      info.appendChild(userImg)
+      // info.appendChild(userImg)
       if (response.display_name === null) {
         userInfo.innerText = `Welcome ${response.id}`
       } else {
         userInfo.innerText = `Welcome ${response.display_name}`
       }
-      userImg.className = `userImg`
-      if (response.images.length > 0) {
-        userImg.innerHTML = `<img src=${response.images[0].url}>`
-      }
+      // userImg.className = `userImg`
+      // if (response.images.length > 0) {
+      //   userImg.innerHTML = `<img src=${response.images[0].url}>`
+      // }
       let userId = response.id
       getUserPlaylists(token, userId)
     }
