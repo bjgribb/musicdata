@@ -13,11 +13,16 @@ a {
 }
 
 .header {
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* line-height: 100px; */
 }
 
 .logo {
-    width: 70px;
+    margin-left: 1rem;
+    width: 100px;
+    height: 100px;
 }
 
 .intro {
@@ -61,7 +66,7 @@ button {
 }
 
 .userImg img {
-    border-radius: 50%;
+    border-radius: 5px;
     margin-top: 1rem;
     height: 300px;
     width: 300px;

@@ -1,3 +1,4 @@
+
 const info = document.querySelector('.info')
 const player = document.querySelector('.player')
 const playerInfo = document.querySelector('.player_info')
@@ -45,6 +46,7 @@ function getToken () {
   var vars = str.split('&')
   var key = {}
   for (let i = 0; i < vars.length; i++) {
+    console.log(vars[i])
     var tmp = vars[i].split('=')
     key[tmp[0]] = tmp[1]
     return key['#access_token']
@@ -60,18 +62,18 @@ function getUser (token) {
     },
     success: function (response) {
       let userInfo = document.createElement('div')
-      let userImg = document.createElement('div')
-      info.appendChild(userInfo)
-      info.appendChild(userImg)
-      if (response.display_name === null) {
-        userInfo.innerText = `Welcome ${response.id}`
-      } else {
-        userInfo.innerText = `Welcome ${response.display_name}`
-      }
-      userImg.className = `userImg`
-      if (response.images.length > 0) {
-        userImg.innerHTML = `<img src=${response.images[0].url}>`
-      }
+      // let userImg = document.createElement('div')
+      // info.appendChild(userInfo)
+      // info.appendChild(userImg)
+      // if (response.display_name === null) {
+      //   userInfo.innerText = `Welcome ${response.id}`
+      // } else {
+      //   userInfo.innerText = `Welcome ${response.display_name}`
+      // }
+      // userImg.className = `userImg`
+      // if (response.images.length > 0) {
+      //   userImg.innerHTML = `<img src=${response.images[0].url}>`
+      // }
       let userId = response.id
       getUserPlaylists(token, userId)
       getUserTopArtists(token)
