@@ -4,9 +4,7 @@ const playerInfo = document.querySelector('.player_info')
 const backDiv = document.querySelector('.back_div')
 const token = getToken()
 const mainContainer = document.querySelector('.main_container')
-const danceabilityModal = document.querySelector('.danceability_modal')
-const energyModal = document.querySelector('.energy_modal')
-const acousticnessModal = document.querySelector('.acousticness_modal')
+const dropdownMenu = document.querySelector('.dropdown-menu')
 
 function getToken () {
   var str = window.location.hash
@@ -56,6 +54,9 @@ function getUserPlaylists (token, userId) {
     },
     success: function (response) {
       for (let playlist of response.items) {
+        let dropdownItem = document.createElement('p')
+        dropdownItem.innerHTML = `<a class="dropdown-item" href="#">${playlist.name}</a>`
+        dropdownMenu.appendChild(dropdownItem)
         let playlistData = document.createElement('div')
         playlistData.className = `playlistData`
         mainContainer.appendChild(playlistData)
