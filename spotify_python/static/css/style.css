@@ -15,8 +15,19 @@ a {
     align-items: center;
 }
 
-.modal_content{
+.modal-content{
     background-color: #1DB954;
+}
+
+.btn {
+    border-radius: 0px;
+    background-color: #1DB954;
+    border: 1px black solid;
+    color:white;
+}
+
+.btn-group{
+    padding: 1rem;
 }
 
 .logo {

@@ -85,7 +85,6 @@ function getPlaylistTracks (token, playlistId, playlistName) {
       info.innerHTML = ''
       info.innerHTML = `<h1>${playlistName}</h1>`
       for (let track of response.items) {
-        console.log(track)
         let playlistData = document.createElement('div')
         playlistData.className = `playlistData`
         mainContainer.appendChild(playlistData)
@@ -123,16 +122,37 @@ function getTrackInfo (token, trackId) {
       'Authorization': 'Bearer ' + token
     },
     success: function (response) {
+      console.log(response)
       playerInfo.innerHTML =
-      `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#danceabilityModal">
-          Danceability: ${response.danceability}
-        </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#energyModal">
-          Energy: ${response.energy}
-        </button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#acousticModal">
-          Acousticness: ${response.acousticness}
-        </button>`
+      `<div class="btn-group row" role="group" aria-label="track info button groups">
+        <button type="button" class="btn" data-toggle="modal" data-target="#danceabilityModal">
+            Dance: ${response.danceability}
+          </button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#energyModal">
+            Energy: ${response.energy}
+          </button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#acousticModal">
+            Acoustic: ${response.acousticness}
+          </button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#instrumentModal">
+            Instrumental: ${response.instrumentalness}
+          </button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#livenessModal">
+            Live: ${response.liveness}
+          </button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#loudnessModal">
+            Loud: ${response.loudness}
+          </button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#acousticModal">
+            Speech: ${response.speechiness}
+          </button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#acousticModal">
+            Tempo: ${response.tempo}
+          </button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#acousticModal">
+            Valence: ${response.valence}
+          </button>
+      </div>`
     }
   })
 }

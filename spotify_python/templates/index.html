@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Your Playlists
   </button>
   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -19,6 +19,8 @@
     <div class='player_info'>
     </div>
 </section>
+
+{% comment %} Definition modals for track meta-data info {% endcomment %}
 
 <div class="modal fade" id="danceabilityModal" tabindex="-1" role="dialog" aria-labelledby="danceabilityModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -75,6 +77,54 @@
                 A confidence measure from 0.0 to 1.0 of whether the 
                 track is acoustic. 1.0 represents high confidence the 
                 track is acoustic.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="instrumentModal" tabindex="-1" role="dialog" aria-labelledby="instrumentalness definition" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="instrumentModalTitle">Instrumentalness</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Predicts whether a track contains no vocals. “Ooh” and “aah” sounds are treated as instrumental in this context. Rap or spoken word tracks are clearly “vocal”. The closer the instrumentalness value is to 1.0, the greater likelihood the track contains no vocal content. Values above 0.5 are intended to represent instrumental tracks, but confidence is higher as the value approaches 1.0. 
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="livenessModal" tabindex="-1" role="dialog" aria-labelledby="liveness definition" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="livenessModalTitle">Liveness</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Detects the presence of an audience in the recording. Higher liveness values represent an increased probability that the track was performed live. A value above 0.8 provides strong likelihood that the track is live.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="loudnessModal" tabindex="-1" role="dialog" aria-labelledby="loudness definition" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loudnessModalTitle">Loudness</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks. Loudness is the quality of a sound that is the primary psychological correlate of physical strength (amplitude). Values typical range between -60 and 0 db. 
             </div>
         </div>
     </div>
