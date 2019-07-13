@@ -2,28 +2,6 @@
 
 {% block content %}
 
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-    </div>
-  </div>
-</div>
-
 <div class='back_div'>  
 </div>
 
@@ -37,36 +15,63 @@
     </div>
 </section>
 
-<div class='danceability_modal'>
-    <div class='modal_content'>
-        <div class="danceability_close">&times;</div>
-        <p>Danceability describes how suitable a track
-        is for dancing based on a combination of musical
-        elements including tempo, rhythm stability,
-        beat strength, and overall regularity.
-        A value of 0.0 is least danceable and 1.0 is most danceable.</p>
+<div class="modal fade" id="danceabilityModal" tabindex="-1" role="dialog" aria-labelledby="danceabilityModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="danceabilityModalTitle">Danceability</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Danceability describes how suitable a track
+                is for dancing based on a combination of musical
+                elements including tempo, rhythm stability,
+                beat strength, and overall regularity.
+                A value of 0.0 is least danceable and 1.0 is most danceable.
+            </div>
+        </div>
     </div>
 </div>
 
-<div class='energy_modal'>
-    <div class='modal_content'>
-        <div class="energy_close">&times;</div>
-        <p>Energy is a measure from 0.0 to 1.0 and represents a 
-        perceptual measure of intensity and activity. 
-        Typically, energetic tracks feel fast, loud, and noisy. 
-        For example, death metal has high energy, while a Bach 
-        prelude scores low on the scale. Perceptual features 
-        contributing to this attribute include dynamic range, 
-        perceived loudness, timbre, onset rate, and general entropy.</p>
+<div class="modal fade" id="energyModal" tabindex="-1" role="dialog" aria-labelledby="energyModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="energyModalTitle">Energy</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Energy is a measure from 0.0 to 1.0 and represents a 
+                perceptual measure of intensity and activity. 
+                Typically, energetic tracks feel fast, loud, and noisy. 
+                For example, death metal has high energy, while a Bach 
+                prelude scores low on the scale. Perceptual features 
+                contributing to this attribute include dynamic range, 
+                perceived loudness, timbre, onset rate, and general entropy.
+            </div>
+        </div>
     </div>
 </div>
 
-<div class='acousticness_modal'>
-    <div class='modal_content'>
-        <div class="acousticness_close">&times;</div>
-        <p>A confidence measure from 0.0 to 1.0 of whether the 
-        track is acoustic. 1.0 represents high confidence the 
-        track is acoustic.</p>
+<div class="modal fade" id="acousticModal" tabindex="-1" role="dialog" aria-labelledby="acousticModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="acousticModalTitle">Acousticness</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                A confidence measure from 0.0 to 1.0 of whether the 
+                track is acoustic. 1.0 represents high confidence the 
+                track is acoustic.
+            </div>
+        </div>
     </div>
 </div>
 
