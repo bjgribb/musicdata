@@ -13,15 +13,15 @@
         {% block meta %}{% endblock %}
         <title>{% block title %}Spotify Me{% endblock %}</title>
     </head>
+    <body class'body'>
 
-    <div class='header'>
-        <h1>Spotify Me</h1>
-        <img class='logo' src='/static/pics/Spotify_Icon_RGB_Green.png'>
-    </div>
+        <div class='header'>
+            <h1>Spotify Me</h1>
+            <img class='logo' src='/static/pics/Spotify_Icon_RGB_Green.png'>
+        </div>
 
-    <body>
-        {% load static %}
-        {% block content %}{% endblock %}
+            {% load static %}
+            {% block content %}{% endblock %}
     
     <script src="{% static 'js/main.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
