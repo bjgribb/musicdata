@@ -138,49 +138,27 @@ function getTrackInfo (token, trackId) {
       'Authorization': 'Bearer ' + token
     },
     success: function (response) {
-      playerInfo.innerHTML = `<div class='danceability_info'>Danceability: ${response.danceability}
-                              </div>
-                              <div class='energy_info'>Energy: ${response.energy}
-                              </div>
-                              <div class='acousticness_info'>Acousticness: ${response.acousticness}
-                              </div>`
-      let danceabilityInfo = document.querySelector('.danceability_info')
-      let energyInfo = document.querySelector('.energy_info')
-      let acousticnessInfo = document.querySelector('.acousticness_info')
-      const danceabilityClose = document.querySelector('.danceability_close')
-      const energyClose = document.querySelector('.energy_close')
-      const acousticnessClose = document.querySelector('.acousticness_close')
-      danceabilityInfo.addEventListener('click', function () {
-        danceabilityModal.style.display = 'block'
-      })
-      energyInfo.addEventListener('click', function () {
-        energyModal.style.display = 'block'
-      })
-      acousticnessInfo.addEventListener('click', function () {
-        acousticnessModal.style.display = 'block'
-      })
-      danceabilityClose.onclick = function () {
-        danceabilityModal.style.display = 'none'
-      }
-      energyClose.onclick = function () {
-        energyModal.style.display = 'none'
-      }
-      acousticnessClose.onclick = function () {
-        acousticnessModal.style.display = 'none'
-      }
-      window.onclick = function (event) {
-        if (event.target === energyModal) {
-          energyModal.style.display = 'none'
-        } else {
-          if (event.target === danceabilityModal) {
-            danceabilityModal.style.display = 'none'
-          } else {
-            if (event.target === acousticnessModal) {
-              acousticnessModal.style.display = 'none'
-            }
-          }
-        }
-      }
+      playerInfo.innerHTML =
+      `<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+          Launch demo modal
+        </button>
+    
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+          </div>
+        </div>
+      </div>`
     }
   })
 }
