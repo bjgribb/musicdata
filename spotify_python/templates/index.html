@@ -2,23 +2,14 @@
 
 {% block content %}
 
-<div class="dropdown">
-  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Your Playlists
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-  </div>
-</div>
-
-<div class='info'>
-</div>
-
-<section class='player_section'>
-    <div class='player'>
+<div class='container user-container mb-3'>
+    <div class='row align-items-center justify-content-center'>
+        <div class='col-sm user-img'>
+        </div>
+        <div class='col-sm user-info'>
+        </div>
     </div>
-    <div class='player_info'>
-    </div>
-</section>
+</div>
 
 {% comment %} Definition modals for track meta-data info {% endcomment %}
 
@@ -130,7 +121,27 @@
     </div>
 </div>
 
-<div class='main_container'>
+<div class="dropdown container">
+  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Your Playlists
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+  </div>
+</div>
+
+<div class="info">
+</div>
+
+<section class='player_section container'>
+    <div class='player'>
+    </div>
+    <div class='player_info'>
+    </div>
+</section>
+
+<div class='container'>
+    <div class='main_container row justify-content-center'>
+    </div>
 </div>
 
 {% endblock %}

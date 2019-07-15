@@ -11,8 +11,10 @@ a {
 
 .header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    margin-bottom: 2rem;
 }
 
 .modal-content{
@@ -20,9 +22,6 @@ a {
 }
 
 .btn {
-    border-radius: 0px;
-    background-color: #1DB954;
-    border: 1px black solid;
     color:white;
 }
 
@@ -70,11 +69,18 @@ button {
     text-align: center;
 }
 
-.userImg img {
+.user-info{
+    text-align: center;
+}
+
+.user-img{
+    text-align: center;
+}
+
+.user-img img{
     border-radius: 100%;
-    margin-top: 1rem;
-    height: 300px;
-    width: 300px;
+    height: 150px;
+    width: 150px;
 }
 
 .playlistData {
@@ -135,10 +141,6 @@ button {
 
 .player_info:hover div {
     cursor: pointer;
-}
-
-.main_container {
-    text-align: center;
 }
 
 .danceability_modal {
@@ -205,11 +207,5 @@ button {
 }
 
 @media only screen and (min-width: 700px) {
-    .main_container {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        border: none;
-        justify-content: center;
-    }
+
 }

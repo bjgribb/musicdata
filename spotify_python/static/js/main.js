@@ -1,9 +1,11 @@
-const info = document.querySelector('.info')
+const userImg = document.querySelector('.user-img')
+const userInfo = document.querySelector('.user-info')
 const player = document.querySelector('.player')
 const playerInfo = document.querySelector('.player_info')
 const token = getToken()
 const mainContainer = document.querySelector('.main_container')
 const dropdownMenu = document.querySelector('.dropdown-menu')
+const info = document.querySelector('.info')
 
 function getToken () {
   var str = window.location.hash
@@ -23,16 +25,18 @@ function getUser (token) {
       'Authorization': 'Bearer ' + token
     },
     success: function (response) {
-      let userInfo = document.createElement('div')
-      let userImg = document.createElement('div')
-      info.appendChild(userInfo)
-      info.appendChild(userImg)
+      console.log(response)
       if (response.display_name === null) {
-        userInfo.innerText = `Welcome ${response.id}`
+        userInfo.innerHTML = `<h4>Welcome ${response.id}</h4>
+                              <h6>Email: ${response.email}</h6>
+                              <h6>Country: ${response.country}</h6>
+                              <h6>Followers: ${response.followers.total}</h6>`
       } else {
-        userInfo.innerText = `Welcome ${response.display_name}`
+        userInfo.innerHTML = `<h4>Welcome ${response.display_name}</h4>
+                              <h6>Email: ${response.email}</h6>
+                              <h6>Country: ${response.country}</h6>
+                              <h6>Followers: ${response.followers.total}</h6>`
       }
-      userImg.className = `userImg`
       if (response.images.length > 0) {
         userImg.innerHTML = `<img src=${response.images[0].url}>`
       }
@@ -88,18 +92,7 @@ function getPlaylistTracks (token, playlistId, playlistName) {
         let playlistData = document.createElement('div')
         playlistData.className = `playlistData`
         mainContainer.appendChild(playlistData)
-        let playlistDataFlipper = document.createElement('div')
-        playlistDataFlipper.className = 'flipper'
-        playlistData.appendChild(playlistDataFlipper)
-        let playlistDataFront = document.createElement('div')
-        playlistDataFront.className = 'front'
-        playlistDataFlipper.appendChild(playlistDataFront)
-        playlistDataFront.innerHTML = `<img src=${track.track.album.images[1].url}>`
-        let playlistDataBack = document.createElement('div')
-        playlistDataBack.className = 'back'
-        playlistDataBack.innerHTML = `<p>${track.track.name}</p>
-                                      <p>${track.track.artists[0].name}</p>`
-        playlistDataFlipper.appendChild(playlistDataBack)
+        playlistData.innerHTML = `<img src=${track.track.album.images[1].url}>`
         let trackId = track.track.id
         playlistData.addEventListener('click', function () {
           getTrackInfo(token, trackId)
