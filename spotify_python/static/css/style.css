@@ -1,10 +1,7 @@
-html {
+body {
     background-color: #191414;
     color: #FFFFFF;
     font-family: 'Montserrat', sans-serif;
-}
-
-body {
     padding: 1rem;
 }
 
@@ -14,8 +11,22 @@ a {
 
 .header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    margin-bottom: 2rem;
+}
+
+.modal-content{
+    background-color: #1DB954;
+}
+
+.btn {
+    color:white;
+}
+
+.btn:hover{
+    color: #1DB954
 }
 
 .logo {
@@ -58,11 +69,18 @@ button {
     text-align: center;
 }
 
-.userImg img {
+.user-info{
+    text-align: center;
+}
+
+.user-img{
+    text-align: center;
+}
+
+.user-img img{
     border-radius: 100%;
-    margin-top: 1rem;
-    height: 300px;
-    width: 300px;
+    height: 150px;
+    width: 150px;
 }
 
 .playlistData {
@@ -70,19 +88,10 @@ button {
     perspective: 1000px;
 }
 
-.playlistData:hover .flipper, .playlistData.hover .flipper {
-    transform: rotateY(180deg);
-    cursor: pointer;
-}
-
-.playlistData, .front, .back {
-    width: 300px;
-    height: 300px;
-}
-
 .playlistData img{
     width: 300px;
     height: 300px;
+    cursor: pointer;
 }
 
 .flipper {
@@ -123,10 +132,6 @@ button {
 
 .player_info:hover div {
     cursor: pointer;
-}
-
-.main_container {
-    text-align: center;
 }
 
 .danceability_modal {
@@ -193,11 +198,5 @@ button {
 }
 
 @media only screen and (min-width: 700px) {
-    .main_container {
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        border: none;
-        justify-content: center;
-    }
+
 }

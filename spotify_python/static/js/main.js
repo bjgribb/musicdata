@@ -1,12 +1,11 @@
-const info = document.querySelector('.info')
+const userImg = document.querySelector('.user-img')
+const userInfo = document.querySelector('.user-info')
 const player = document.querySelector('.player')
 const playerInfo = document.querySelector('.player_info')
-const backDiv = document.querySelector('.back_div')
 const token = getToken()
 const mainContainer = document.querySelector('.main_container')
-const danceabilityModal = document.querySelector('.danceability_modal')
-const energyModal = document.querySelector('.energy_modal')
-const acousticnessModal = document.querySelector('.acousticness_modal')
+const dropdownMenu = document.querySelector('.dropdown-menu')
+const info = document.querySelector('.info')
 
 function getToken () {
   var str = window.location.hash
@@ -26,19 +25,21 @@ function getUser (token) {
       'Authorization': 'Bearer ' + token
     },
     success: function (response) {
-      let userInfo = document.createElement('div')
-      // let userImg = document.createElement('div')
-      info.appendChild(userInfo)
-      // info.appendChild(userImg)
+      console.log(response)
       if (response.display_name === null) {
-        userInfo.innerText = `Welcome ${response.id}`
+        userInfo.innerHTML = `<h4>Welcome ${response.id}</h4>
+                              <h6>Email: ${response.email}</h6>
+                              <h6>Country: ${response.country}</h6>
+                              <h6>Followers: ${response.followers.total}</h6>`
       } else {
-        userInfo.innerText = `Welcome ${response.display_name}`
+        userInfo.innerHTML = `<h4>Welcome ${response.display_name}</h4>
+                              <h6>Email: ${response.email}</h6>
+                              <h6>Country: ${response.country}</h6>
+                              <h6>Followers: ${response.followers.total}</h6>`
       }
-      // userImg.className = `userImg`
-      // if (response.images.length > 0) {
-      //   userImg.innerHTML = `<img src=${response.images[0].url}>`
-      // }
+      if (response.images.length > 0) {
+        userImg.innerHTML = `<img src=${response.images[0].url}>`
+      }
       let userId = response.id
       getUserPlaylists(token, userId)
     }
@@ -56,23 +57,12 @@ function getUserPlaylists (token, userId) {
     },
     success: function (response) {
       for (let playlist of response.items) {
-        let playlistData = document.createElement('div')
-        playlistData.className = `playlistData`
-        mainContainer.appendChild(playlistData)
-        let playlistDataFlipper = document.createElement('div')
-        playlistDataFlipper.className = 'flipper'
-        playlistData.appendChild(playlistDataFlipper)
-        let playlistDataFront = document.createElement('div')
-        playlistDataFront.className = 'front'
-        playlistDataFlipper.appendChild(playlistDataFront)
-        playlistDataFront.innerHTML = `<img src=${playlist.images[0].url}>`
-        let playlistDataBack = document.createElement('div')
-        playlistDataBack.className = 'back'
-        playlistDataBack.innerHTML = `<p>${playlist.name}</p>`
-        playlistDataFlipper.appendChild(playlistDataBack)
+        let dropdownItem = document.createElement('p')
+        dropdownItem.innerHTML = `<a class="dropdown-item" href="#">${playlist.name}</a>`
+        dropdownMenu.appendChild(dropdownItem)
         let playlistId = playlist.id
         let playlistName = playlist.name
-        playlistData.addEventListener('click', function () {
+        dropdownItem.addEventListener('click', function () {
           getPlaylistTracks(token, playlistId, playlistName)
         })
       }
@@ -91,7 +81,6 @@ function getPlaylistTracks (token, playlistId, playlistName) {
     },
     success: function (response) {
       mainContainer.innerHTML = ''
-      backDiv.innerHTML = `<div class='back_button' onClick="document.location.reload(true)">Back</div>`
       window.scroll({
         top: 0,
         left: 0,
@@ -100,22 +89,10 @@ function getPlaylistTracks (token, playlistId, playlistName) {
       info.innerHTML = ''
       info.innerHTML = `<h1>${playlistName}</h1>`
       for (let track of response.items) {
-        console.log(track)
         let playlistData = document.createElement('div')
         playlistData.className = `playlistData`
         mainContainer.appendChild(playlistData)
-        let playlistDataFlipper = document.createElement('div')
-        playlistDataFlipper.className = 'flipper'
-        playlistData.appendChild(playlistDataFlipper)
-        let playlistDataFront = document.createElement('div')
-        playlistDataFront.className = 'front'
-        playlistDataFlipper.appendChild(playlistDataFront)
-        playlistDataFront.innerHTML = `<img src=${track.track.album.images[1].url}>`
-        let playlistDataBack = document.createElement('div')
-        playlistDataBack.className = 'back'
-        playlistDataBack.innerHTML = `<p>${track.track.name}</p>
-                                      <p>${track.track.artists[0].name}</p>`
-        playlistDataFlipper.appendChild(playlistDataBack)
+        playlistData.innerHTML = `<img src=${track.track.album.images[1].url}>`
         let trackId = track.track.id
         playlistData.addEventListener('click', function () {
           getTrackInfo(token, trackId)
@@ -138,49 +115,37 @@ function getTrackInfo (token, trackId) {
       'Authorization': 'Bearer ' + token
     },
     success: function (response) {
-      playerInfo.innerHTML = `<div class='danceability_info'>Danceability: ${response.danceability}
-                              </div>
-                              <div class='energy_info'>Energy: ${response.energy}
-                              </div>
-                              <div class='acousticness_info'>Acousticness: ${response.acousticness}
-                              </div>`
-      let danceabilityInfo = document.querySelector('.danceability_info')
-      let energyInfo = document.querySelector('.energy_info')
-      let acousticnessInfo = document.querySelector('.acousticness_info')
-      const danceabilityClose = document.querySelector('.danceability_close')
-      const energyClose = document.querySelector('.energy_close')
-      const acousticnessClose = document.querySelector('.acousticness_close')
-      danceabilityInfo.addEventListener('click', function () {
-        danceabilityModal.style.display = 'block'
-      })
-      energyInfo.addEventListener('click', function () {
-        energyModal.style.display = 'block'
-      })
-      acousticnessInfo.addEventListener('click', function () {
-        acousticnessModal.style.display = 'block'
-      })
-      danceabilityClose.onclick = function () {
-        danceabilityModal.style.display = 'none'
-      }
-      energyClose.onclick = function () {
-        energyModal.style.display = 'none'
-      }
-      acousticnessClose.onclick = function () {
-        acousticnessModal.style.display = 'none'
-      }
-      window.onclick = function (event) {
-        if (event.target === energyModal) {
-          energyModal.style.display = 'none'
-        } else {
-          if (event.target === danceabilityModal) {
-            danceabilityModal.style.display = 'none'
-          } else {
-            if (event.target === acousticnessModal) {
-              acousticnessModal.style.display = 'none'
-            }
-          }
-        }
-      }
+      console.log(response)
+      playerInfo.innerHTML =
+      `<div class="btn-group row" role="group" aria-label="track info button groups">
+        <button type="button" class="btn" data-toggle="modal" data-target="#danceabilityModal">
+            Dance: ${response.danceability}
+          </button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#energyModal">
+            Energy: ${response.energy}
+          </button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#acousticModal">
+            Acoustic: ${response.acousticness}
+          </button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#instrumentModal">
+            Instrumental: ${response.instrumentalness}
+          </button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#livenessModal">
+            Live: ${response.liveness}
+          </button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#loudnessModal">
+            Loud: ${response.loudness}
+          </button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#speechModal">
+            Speech: ${response.speechiness}
+          </button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#tempoModal">
+            Tempo: ${response.tempo}
+          </button>
+          <button type="button" class="btn" data-toggle="modal" data-target="#valenceModal">
+            Valence: ${response.valence}
+          </button>
+      </div>`
     }
   })
 }
