@@ -25,7 +25,6 @@ function getUser (token) {
       'Authorization': 'Bearer ' + token
     },
     success: function (response) {
-      console.log(response)
       if (response.display_name === null) {
         userInfo.innerHTML = `<h4>Welcome ${response.id}</h4>
                               <h6>Email: ${response.email}</h6>
@@ -81,31 +80,35 @@ function getPlaylistTracks (token, playlistId, playlistName) {
     },
     success: function (response) {
       mainContainer.innerHTML = ''
-      window.scroll({
-        top: 0,
-        left: 0,
-        behavior: 'auto'
-      })
       info.innerHTML = ''
       info.innerHTML = `<h1>${playlistName}</h1>`
-      for (let track of response.items) {
-        let playlistData = document.createElement('div')
-        playlistData.className = `playlistData`
-        mainContainer.appendChild(playlistData)
-        playlistData.innerHTML = `<img src=${track.track.album.images[1].url}>`
-        let trackId = track.track.id
-        playlistData.addEventListener('click', function () {
-          getTrackInfo(token, trackId)
-          player.innerHTML = `<iframe src="https://open.spotify.com/embed/track/${trackId}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`
-          window.scroll({
-            top: 150,
-            left: 0,
-            behavior: 'smooth'
-          })
-        })
+      let trackArray = []
+      for (let item of response.items) {
+        trackArray.push(item)
       }
+      generateTrackDOM(trackArray)
+      console.log(trackArray.sort((a, b) => b.track.popularity - a.track.popularity))
     }
   })
+}
+
+function generateTrackDOM (trackArray) {
+  for (let track of trackArray.sort((a, b) => b.track.popularity - a.track.popularity)) {
+    let playlistData = document.createElement('div')
+    playlistData.className = `playlistData`
+    mainContainer.appendChild(playlistData)
+    playlistData.innerHTML = `<img src=${track.track.album.images[1].url}>`
+    let trackId = track.track.id
+    playlistData.addEventListener('click', function () {
+      getTrackInfo(token, trackId)
+      player.innerHTML = `<iframe src="https://open.spotify.com/embed/track/${trackId}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`
+      window.scroll({
+        top: 150,
+        left: 0,
+        behavior: 'smooth'
+      })
+    })
+  }
 }
 
 function getTrackInfo (token, trackId) {
@@ -115,7 +118,6 @@ function getTrackInfo (token, trackId) {
       'Authorization': 'Bearer ' + token
     },
     success: function (response) {
-      console.log(response)
       playerInfo.innerHTML =
       `<div class="btn-group row" role="group" aria-label="track info button groups">
         <button type="button" class="btn" data-toggle="modal" data-target="#danceabilityModal">
