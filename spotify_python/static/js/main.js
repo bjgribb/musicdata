@@ -136,13 +136,13 @@ function getTrackInfo (token, trackId) {
           <button type="button" class="btn" data-toggle="modal" data-target="#loudnessModal">
             Loud: ${response.loudness}
           </button>
-          <button type="button" class="btn" data-toggle="modal" data-target="#acousticModal">
+          <button type="button" class="btn" data-toggle="modal" data-target="#speechModal">
             Speech: ${response.speechiness}
           </button>
-          <button type="button" class="btn" data-toggle="modal" data-target="#acousticModal">
+          <button type="button" class="btn" data-toggle="modal" data-target="#tempoModal">
             Tempo: ${response.tempo}
           </button>
-          <button type="button" class="btn" data-toggle="modal" data-target="#acousticModal">
+          <button type="button" class="btn" data-toggle="modal" data-target="#valenceModal">
             Valence: ${response.valence}
           </button>
       </div>`
