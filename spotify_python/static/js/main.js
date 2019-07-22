@@ -83,11 +83,13 @@ function getPlaylistTracks (token, playlistId, playlistName) {
       info.innerHTML = ''
       info.innerHTML = `<h1>${playlistName}</h1>`
       let trackArray = []
+      let trackIds = []
       for (let item of response.items) {
         trackArray.push(item)
+        trackIds.push(item.track.id)
       }
       generateTrackDOM(trackArray)
-      console.log(trackArray.sort((a, b) => b.track.popularity - a.track.popularity))
+      getTrackInfo(token, trackIds)
     }
   })
 }
@@ -111,43 +113,44 @@ function generateTrackDOM (trackArray) {
   }
 }
 
-function getTrackInfo (token, trackId) {
+function getTrackInfo (token, trackIds) {
   $.ajax({
-    url: `https://api.spotify.com/v1/audio-features/${trackId}`,
+    url: `https://api.spotify.com/v1/audio-features/?ids=${trackIds}`,
     headers: {
       'Authorization': 'Bearer ' + token
     },
     success: function (response) {
-      playerInfo.innerHTML =
-      `<div class="btn-group row" role="group" aria-label="track info button groups">
-        <button type="button" class="btn" data-toggle="modal" data-target="#danceabilityModal">
-            Dance: ${response.danceability}
-          </button>
-          <button type="button" class="btn" data-toggle="modal" data-target="#energyModal">
-            Energy: ${response.energy}
-          </button>
-          <button type="button" class="btn" data-toggle="modal" data-target="#acousticModal">
-            Acoustic: ${response.acousticness}
-          </button>
-          <button type="button" class="btn" data-toggle="modal" data-target="#instrumentModal">
-            Instrumental: ${response.instrumentalness}
-          </button>
-          <button type="button" class="btn" data-toggle="modal" data-target="#livenessModal">
-            Live: ${response.liveness}
-          </button>
-          <button type="button" class="btn" data-toggle="modal" data-target="#loudnessModal">
-            Loud: ${response.loudness}
-          </button>
-          <button type="button" class="btn" data-toggle="modal" data-target="#speechModal">
-            Speech: ${response.speechiness}
-          </button>
-          <button type="button" class="btn" data-toggle="modal" data-target="#tempoModal">
-            Tempo: ${response.tempo}
-          </button>
-          <button type="button" class="btn" data-toggle="modal" data-target="#valenceModal">
-            Valence: ${response.valence}
-          </button>
-      </div>`
+      console.log(response)
+      // playerInfo.innerHTML =
+      // `<div class="btn-group row" role="group" aria-label="track info button groups">
+      //   <button type="button" class="btn" data-toggle="modal" data-target="#danceabilityModal">
+      //       Dance: ${response.danceability}
+      //     </button>
+      //     <button type="button" class="btn" data-toggle="modal" data-target="#energyModal">
+      //       Energy: ${response.energy}
+      //     </button>
+      //     <button type="button" class="btn" data-toggle="modal" data-target="#acousticModal">
+      //       Acoustic: ${response.acousticness}
+      //     </button>
+      //     <button type="button" class="btn" data-toggle="modal" data-target="#instrumentModal">
+      //       Instrumental: ${response.instrumentalness}
+      //     </button>
+      //     <button type="button" class="btn" data-toggle="modal" data-target="#livenessModal">
+      //       Live: ${response.liveness}
+      //     </button>
+      //     <button type="button" class="btn" data-toggle="modal" data-target="#loudnessModal">
+      //       Loud: ${response.loudness}
+      //     </button>
+      //     <button type="button" class="btn" data-toggle="modal" data-target="#speechModal">
+      //       Speech: ${response.speechiness}
+      //     </button>
+      //     <button type="button" class="btn" data-toggle="modal" data-target="#tempoModal">
+      //       Tempo: ${response.tempo}
+      //     </button>
+      //     <button type="button" class="btn" data-toggle="modal" data-target="#valenceModal">
+      //       Valence: ${response.valence}
+      //     </button>
+      // </div>`
     }
   })
 }
