@@ -96,20 +96,44 @@ function getPlaylistTracks (token, playlistId, playlistName) {
 
 function generateTrackDOM (trackArray) {
   for (let track of trackArray.sort((a, b) => b.track.popularity - a.track.popularity)) {
+    console.log(track)
     let playlistData = document.createElement('div')
-    playlistData.className = `playlistData`
+    playlistData.className = `card`
     mainContainer.appendChild(playlistData)
-    playlistData.innerHTML = `<img src=${track.track.album.images[1].url}>`
-    let trackId = track.track.id
-    playlistData.addEventListener('click', function () {
-      getTrackInfo(token, trackId)
-      player.innerHTML = `<iframe src="https://open.spotify.com/embed/track/${trackId}" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>`
-      window.scroll({
-        top: 150,
-        left: 0,
-        behavior: 'smooth'
-      })
-    })
+    playlistData.innerHTML =
+      `<img src="${track.track.album.images[0].url}" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">${track.track.name}</h5>
+          <p class="card-text">${track.track.artists[0].name}</p>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#danceabilityModal">
+            Dance:
+          </button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#energyModal">
+            Energy:
+          </button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#acousticModal">
+            Acoustic:
+          </button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#instrumentModal">
+            Instrumental:
+          </button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#livenessModal">
+            Live:
+          </button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loudnessModal">
+            Loud:
+          </button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#speechModal">
+            Speech:
+          </button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tempoModal">
+            Tempo:
+          </button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#valenceModal">
+            Valence:
+          </button>
+        </div>
+      `
   }
 }
 
@@ -120,7 +144,6 @@ function getTrackInfo (token, trackIds) {
       'Authorization': 'Bearer ' + token
     },
     success: function (response) {
-      console.log(response)
       // playerInfo.innerHTML =
       // `<div class="btn-group row" role="group" aria-label="track info button groups">
       //   <button type="button" class="btn" data-toggle="modal" data-target="#danceabilityModal">
